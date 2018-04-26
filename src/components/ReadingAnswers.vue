@@ -9,7 +9,7 @@
                         <button  class="btn btn-success  "   v-on:click="addReadingAnswer">Add answer </button>
                     </div>
                     
-                </div>    
+                </div>
                 <div class="container row marg" v-for="questionAnswer in questionAnswers" :key="questionAnswer.id" >
                     
                     <div class="col-lg-1 no-padd text-center">
@@ -23,49 +23,43 @@
                     </div>
                     
                 </div>
-          
         </form>
     </div>
 </template>
 
 <script>
-import AddQuestion from './AddQuestion'
-import store from '../store';
+import AddQuestion from "./AddQuestion";
+import store from "../store";
 
 export default {
-  data(){
-      return {
-               questionAnswers:[ 
-                {
-                    id:1,
-                    text:'',
-                    correct:''
-                }
-            ]
-             
-                
-      }
+  data() {
+    return {
+      questionAnswers: [
+        {
+          id: 1,
+          text: "",
+          correct: ""
+        }
+      ]
+    };
   },
   methods: {
-        
-        addReadingAnswer(text,correct) 
-        {
-            var id= this.questionAnswers[this.questionAnswers.length-1].id + 1;  
-            this.questionAnswers.push({
-                    id,
-                    text:'',
-                    correct:''
-            })
+    addReadingAnswer(text, correct) {
+      var id = this.questionAnswers[this.questionAnswers.length - 1].id + 1;
+      this.questionAnswers.push({
+        id,
+        text: "",
+        correct: ""
+      });
 
-            store.commit('addReadingAnswer', this.questionAnswers);
-        },
-        deleteReadingAnswer(id) {
-           if(this.questionAnswers.length > 1) {
-             var id= this.questionAnswers[this.questionAnswers.length-1].id - 1;
-             this.questionAnswers.splice(id,1);
-           }
-        }
-
+      store.commit("addReadingAnswer", this.questionAnswers);
+    },
+    deleteReadingAnswer(id) {
+      if (this.questionAnswers.length > 1) {
+        var id = this.questionAnswers[this.questionAnswers.length - 1].id - 1;
+        this.questionAnswers.splice(id, 1);
+      }
+    }
   }
-}
+};
 </script>

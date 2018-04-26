@@ -8,19 +8,15 @@
 </template>
 
 <script>
-
-import QuestionItem from './QuestionItem';
-import store from '../store';
+import QuestionItem from "./QuestionItem";
+import { mapState } from 'vuex'
 
 export default {
-  computed: { questions: () => store.state.questions },
+  computed: mapState({
+    questions: state => state.questions.list,
+  }),
   components: {
-    QuestionItem,
+    QuestionItem
   },
-  methods: {
-    editQuestion(id) {
-    }
-  }
-
-}
+};
 </script>

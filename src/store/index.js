@@ -1,27 +1,24 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import { stat } from 'fs';
+import Vue from 'vue';
+import Vuex from 'vuex';
+import * as actions from './actions';
+import mutations from './mutations';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
-	state: {
-    test: {},
-    questions: [],
-    answers: [],
+const state = {
+  test: {},
+  questions: {
+    fetching: false,
+    creating: false,
+    error: false,
+    errors: {},
+    list: [],
   },
-  mutations: {
-    addQuestion(state, question) {
-     question.answers = state.answers;
-     state.questions.push(question);
-     state.answers = [];
-   },
-   addAnswer(state, answer) {
-    state.answers.push(answer);
-  },
-  removeQuestion(state, position){
-    state.questions.splice(position, 1);
-  }
+  answers: [],
+};
 
-}
-})
+export default new Vuex.Store({
+  state,
+  mutations,
+  actions,
+});

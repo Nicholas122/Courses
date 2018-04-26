@@ -47,7 +47,7 @@
               </div>
             </div>
             <!-- <uerInput><userInput> -->
-              <button type="submit" class="btn btn-success" @click.prevent="addQuestion">Add Question </button>
+              <button type="submit" class="btn btn-success" @click.prevent="submitHandler">Add Question </button>
             </form>
           </div>     
         </div> 
@@ -57,59 +57,48 @@
   </template>
 
   <script>
-  import ReadingText from './ReadingText'
-  import store from '../store';
-  import Answers from './Answers';
+import ReadingText from './ReadingText';
+import { mapActions } from 'vuex';
+import Answers from './Answers';
 
-  export default {
-    data(){
-      return {
-        question: {},
-      }
-
+export default {
+  data() {
+    return {
+      question: {}
+    };
+  },
+  methods: {
+    ...mapActions([
+      'addQuestion',
+    ]),
+    submitHandler() {
+      this.addQuestion(this.question)
+        .then(() => { this.question = {}; });
     },
-    methods: {
-      addQuestion(){
-        var id = 1;
-        
-        if (store.state.questions[store.state.questions.length-1] != undefined) {
-          id = store.state.questions[store.state.questions.length-1].id +1;
-        }
+  },
+  components: {
+    ReadingText,
+    Answers,
+  },
+};
+</script>
 
-        var question = {
-          id: id,
-          text: this.question.text,
-          type: this.question.type,
-          weight: this.question.weight
-        };
-
-        store.commit('addQuestion', question);
-        this.question = {};
-      },
-
-    },
-    components: {
-     ReadingText,
-     Answers
-   },
- }
- </script>
  <style>
- .right {
+.right {
   float: right;
 }
 .marg {
   margin-top: 10px;
-  margin-bottom:10px;
+  margin-bottom: 10px;
 }
 .padd {
   padding-top: 5px;
 }
 .no-padd {
-	padding:0px;
+  padding: 0px;
 }
 .yes-marg {
-	margin-left:15px;
-	margin-right:15px;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 </style>

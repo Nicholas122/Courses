@@ -22,34 +22,33 @@
 </template>
 
 <script>
-    import questionHeader from '@/components/Header';
-    import QuestionsList from '@/components/QuestionsList';
-    import EditQuestion from '@/components/EditQuestion';
-    import AddQuestion from '@/components/AddQuestion';
+import questionHeader from "@/components/Header";
+import QuestionsList from "@/components/QuestionsList";
+import EditQuestion from "@/components/EditQuestion";
+import AddQuestion from "@/components/AddQuestion";
 
-
-    export default {
-        data() {
-            return {
-                mode: 'AddView',
-                editedQuestion: {}
-            }
-        },
-        computed: {
-            componentName() {
-                return this.mode == 'AddView' ? 'add' : 'edit';
-            }
-        },
-        components: {
-            questionHeader,
-            'questions': QuestionsList,
-            'edit': EditQuestion,
-            'add': AddQuestion
-        }
+export default {
+  data() {
+    return {
+      mode: "AddView",
+      editedQuestion: {}
+    };
+  },
+  computed: {
+    componentName() {
+      return this.mode == "AddView" ? "add" : "edit";
     }
+  },
+  components: {
+    questionHeader,
+    questions: QuestionsList,
+    edit: EditQuestion,
+    add: AddQuestion
+  }
+};
 </script>
 <style>
-    .col-padding-0 {
-        padding: 0px;
-    }
+.col-padding-0 {
+  padding: 0px;
+}
 </style>
