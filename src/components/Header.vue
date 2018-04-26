@@ -18,7 +18,7 @@
                         <div class="col-md-4">
                             <label for="CourseSection">Select Section</label>                
                             <select name="CourseSection" id="CourseSection" class="form-control">
-                                <option value="0">-- Select From List --</option>
+                                <option v-for="(section, i) in sections" v-bind:value="section.id">{{section.text}}</option>
                             </select>
                         </div>
                     <div class="col-md-4">
@@ -28,7 +28,9 @@
                         <label class="timePHolders">* sets the test time limit in minutes</label>
                     </div>
                     <div class="col-md-4">
-                        <label for="lTestRate" class="control-label">Pass/fail score</label>
+                        <label for=": {
+
+                    }lTestRate" class="control-label">Pass/fail score</label>
                         <input id="lTestRate" name="lTestRate" class="form-control  timeLimits" type="number" min="0" max="100" value="60">
                         <label class="timePHolders">* passing score in percent</label>
                     </div>
@@ -39,6 +41,7 @@
                     </div>
                     </div>
 
+
                 </div>
             </div>
         </form>
@@ -46,10 +49,17 @@
 </template> 
 <script>
 export default {
+  props: ['courseId'],
   data() {
       return {
-         
+         sections: [],
       }
+  },
+  created: function () {
+      this.$http.get('/api/sections', {params: {course: this.courseId}})
+      .then(response => {
+        this.$set('sections', response.data.sources);
+      });
   }
 }
 </script>     

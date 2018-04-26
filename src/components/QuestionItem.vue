@@ -38,7 +38,7 @@ export default {
   },  
   methods: {
     editQuestions() {
-      this.$emit('editQuestion', this.question.id);
+      
     },
     deleteQuestions() {
       let questionId = this.question.id; 
