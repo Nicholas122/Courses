@@ -6,22 +6,22 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: {
-        test: {},
-        questions: [],
-        answers: [],
-    },
-    mutations: {
-      addQuestion(state, question) {
-           question.answers = state.answers;
-           state.questions.push(question);
-           state.answers = [];
-    },
-    addAnswer(state, answer) {
-        state.answers.push(answer);
-    },
-    removeQuestion(state, position){
-        state.questions.splice(position, 1);
-    }
+    test: {},
+    questions: [],
+    answers: [],
+  },
+  mutations: {
+    addQuestion(state, question) {
+     question.answers = state.answers;
+     state.questions.push(question);
+     state.answers = [];
+   },
+   addAnswer(state, answer) {
+    state.answers.push(answer);
+  },
+  removeQuestion(state, position){
+    state.questions.splice(position, 1);
+  }
 
 }
 })

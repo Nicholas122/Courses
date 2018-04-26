@@ -19,19 +19,19 @@
 </template>
 <script>
 
-import QuestionServices from './QuestionServices'
 
 export default {
-  data(){
-      return {
-          question:{}
+  props: {
+      question: {
+        type: Object,
+        required: true
       }
   },
-  created(){
-        QuestionServices.$on("editDetail", (selectedQuestion) => {
-          this.question = selectedQuestion;
-      });
-  }
+  data(){
+      return {
+        
+      }
+  },
 }
 </script>
 

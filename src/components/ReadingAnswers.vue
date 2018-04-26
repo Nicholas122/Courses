@@ -30,7 +30,6 @@
 
 <script>
 import AddQuestion from './AddQuestion'
-import QuestionServices from './QuestionServices'
 import store from '../store';
 
 export default {

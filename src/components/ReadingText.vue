@@ -34,7 +34,6 @@
 
 <script>
 
-import QuestionServices from './QuestionServices'
 import ReadingAnswers from '../components/ReadingAnswers'
 import store from '../store';
 
