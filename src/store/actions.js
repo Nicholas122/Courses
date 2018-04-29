@@ -5,8 +5,13 @@ import {
   DELETE_QUESTION_FAILURE,
   DELETE_QUESTION_REQUEST,
   DELETE_QUESTION_SUCCESSFUL,
+  SET_QUESTION_TYPE,
 } from './mutationTypes';
 import * as api from '../helpers/api';
+
+export const setQuestionType = ({ commit }, status) => (
+  commit(SET_QUESTION_TYPE, status)
+);
 
 export const addQuestion = ({ commit }, data) => {
   commit(ADD_QUESTION_REQUEST);

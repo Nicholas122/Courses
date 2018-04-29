@@ -5,9 +5,13 @@ import {
   DELETE_QUESTION_FAILURE,
   DELETE_QUESTION_REQUEST,
   DELETE_QUESTION_SUCCESSFUL,
+  SET_QUESTION_TYPE,
 } from './mutationTypes';
 
 export default {
+  [SET_QUESTION_TYPE](state, status) {
+    state.questionType = status;
+  },
   [DELETE_QUESTION_FAILURE](state, { id, errors }) {
     state.questions.list = state.questions.list.map((i) => {
       if (i.id !== id) {

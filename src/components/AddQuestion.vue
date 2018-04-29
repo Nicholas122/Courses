@@ -19,16 +19,8 @@
               </div>
               <textarea type="text" id="question-text" rows="5" class="form-control"  placeholder="Please enter text for question" v-model="question.text"></textarea>
             </div>
-            <div class="form-group"> 
-              <label><b>Choose question type:</b></label> 
-              <select  id="question-type" v-model="question.type" >
-                <option  value="user-input" >User input</option>
-                <option  value="multiply-choise">Multiply choise</option>
-                <option  value="reading-text">Reading text</option>
-              </select>
-            </div>    
+            <QuestionTypeSelector />
             <label for=""></label>
-
             <div v-if="question.type == 'user-input'">
               <div class="card">
                 <div class="card-header">
@@ -57,8 +49,9 @@
   </template>
 
   <script>
-import ReadingText from './ReadingText';
 import { mapActions } from 'vuex';
+import ReadingText from './ReadingText';
+import QuestionTypeSelector from './QuestionTypeSelector';
 import Answers from './Answers';
 
 export default {
@@ -79,6 +72,7 @@ export default {
   components: {
     ReadingText,
     Answers,
+    QuestionTypeSelector,
   },
 };
 </script>
