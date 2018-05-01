@@ -23,7 +23,7 @@ export default {
     question.type = state.questionType;
 
     if (question.type === 'READING_TEXT') {
-      question.subQuestion = state.readingQuestions;
+      question.subQuestions = state.readingQuestions;
       question.readingText = state.readingText;
 
       state.readingQuestions = [];

@@ -24,12 +24,41 @@
        </div>
      </div>    
 
-     <div class="card-body">
-       <button class="btn btn-secondary edit-btn" @click.prevent="editQuestions"> Edit </button>
-       <button class="btn btn-danger edit-btn" @click.prevent="removeQuestion"> Delete </button>
+     <div class="card-body" v-if="question.type == 'READING_TEXT'">
+      <p><span class="question-info">Question text:</span> {{question.text}}</p>
+      <p><span class="question-info">Question type:</span> {{ getConst(question.type) }}</p>
+      <p><span class="question-info">Reading text:</span> {{question.readingText}}</p>
+      <p><span class="question-info" v-if="question.weight">Weight:</span> {{ question.weight }}</p>
+      <span class="question-info" v-if="question.subQuestions.length > 0">Reading questions:</span>
+      <div class="card-body" v-for="(readingQuestion, i) in question.subQuestions" :key="readingQuestion.id">
+        <span class="question-info">Question {{i + 1}}:</span>
+        <div class="card-body">
+          <p><span class="question-info">Question text:</span> {{readingQuestion.questionText}}</p>
+          <span class="question-info" v-if="question.answers.length > 0">Answers:</span>
+
+          <div class="row marg" v-for="(answer) in question.answers" :key="answer.id" >
+
+           <div class="col-lg-1 no-padd text-center">
+             <span><b>{{ answer.id }})</b></span>
+           </div>
+           <div class="col-lg-10">
+             <input type="text" placeholder="Please enter the answer" class="form-control" v-model="answer.text" disabled="">
+           </div>
+           <div class="col-lg-1">
+             <input type="checkbox"  :id="answer.id"  v-model="answer.correct" disabled="">
+           </div>
+         </div>
+       </div>
+
      </div>
-   </div> 
- </div>   
+   </div>  
+
+   <div class="card-body">
+     <button class="btn btn-secondary edit-btn" @click.prevent="editQuestions"> Edit </button>
+     <button class="btn btn-danger edit-btn" @click.prevent="removeQuestion"> Delete </button>
+   </div>
+ </div> 
+</div>   
 </template>
 <script>
 import { mapActions } from 'vuex';
