@@ -32,7 +32,7 @@
             </div>
             <div v-if="questionType == 'MULTIPLY_CHOISE'">
               <div class="card">
-                <Answers> </Answers>
+                <Answers :questionId="1"> </Answers>
               </div>        
             </div>
             <div v-if="questionType == 'READING_TEXT'">

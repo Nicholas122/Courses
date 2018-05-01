@@ -4,28 +4,36 @@
       <div  class="card-header">
         <h3>Question {{ index }}</h3>
       </div>
-      <div class="card-body">
-        <p>{{question.text}}</p>
-        <p>{{question.type}}</p>
-        <div class="answers">
-          <template v-for="answer  in question.answers" v-bind:answer="answer.id"  >
-            <!-- <p>{{question.answers.id }} ) {{question.answers.text}}</p> -->
-            <!-- {{ answer.text}}  {{answer.id}} {{ answer.key}} {} -->
-            {{ answer.id}} {{ answer.text}}
+      <div class="card-body" v-if="question.type != 'READING_TEXT'">
+        <p><span class="question-info">Question text:</span> {{question.text}}</p>
+        <p><span class="question-info">Question type:</span> {{ question.type }}</p>
+        <p><span class="question-info">Weight:</span> {{ question.weight }}</p>
+        <span class="question-info" v-if="question.answers.length > 0">Answers:</span>
+        <div class="row marg" v-for="(answer) in question.answers" :key="answer.id" >
 
-          </template>
-        </div>    
-        <p>{{question.weight}}</p>
+         <div class="col-lg-1 no-padd text-center">
+           <span><b>{{ answer.id }})</b></span>
+         </div>
+         <div class="col-lg-10">
+           <input type="text" placeholder="Please enter the answer" class="form-control" v-model="answer.text" disabled="">
+         </div>
+         <div class="col-lg-1">
+           <input type="checkbox"  :id="answer.id"  v-model="answer.correct" disabled="">
+         </div>
 
-        <button class="btn btn-secondary edit-btn" @click.prevent="editQuestions"> Edit </button>
-        <button class="btn btn-danger edit-btn" @click.prevent="removeQuestion"> Delete </button>
-      </div>  
-    </div> 
-  </div>   
+       </div>
+     </div>    
+
+     <div class="card-body">
+       <button class="btn btn-secondary edit-btn" @click.prevent="editQuestions"> Edit </button>
+       <button class="btn btn-danger edit-btn" @click.prevent="removeQuestion"> Delete </button>
+     </div>
+   </div> 
+ </div>   
 </template>
 <script>
 import { mapActions } from 'vuex';
-
+import * as types from '../store/questionTypes';
 
 export default {
   props: {
@@ -60,6 +68,10 @@ export default {
   margin-top: 15px;
   margin-bottom:15px;
 
+}
+
+.question-info {
+  font-weight: bold;
 }
 
 </style>

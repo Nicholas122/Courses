@@ -40,12 +40,8 @@ import _ from 'lodash'
 export default {
   props: ['questionId'],
   computed: mapState({
-    answers: state => _.find(state.answers, function (el) {
-      if (el.questionId == 1) {
-        return el;
-      }
+    answers: state => state.answers
     }),
-  }),
   methods: {
     ...mapActions([
       'addAnswer',
