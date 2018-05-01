@@ -19,7 +19,10 @@
                   <option  value="5">5</option>
                 </select>
               </div>
-              <textarea type="text" id="question-text" rows="5" class="form-control"  placeholder="Please enter text for question" v-model="question.text"></textarea>
+              <div class="form-group" v-bind:class="{ 'has-danger': $v.question.text.$error }">
+                <textarea type="text" id="question-text" rows="5" class="form-control"  placeholder="Please enter text for question" v-model.trim="question.text" @input="$v.question.text.$touch()" v-bind:class="{ 'is-invalid': $v.question.text.$error }"></textarea>
+              </div>
+              <div class="invalid-feedback" v-if="$v.question.text.$error" style="display: block">This field is required!</div>
             </div>
             <QuestionTypeSelector />
             <label for=""></label>
@@ -41,25 +44,27 @@
               </div>
             </div>
 
-              <button type="submit" class="btn btn-success" @click.prevent="submitHandler">Add Question </button>
-            </form>
-          </div>     
-        </div> 
-      </div>
-
+            <button type="submit" class="btn btn-success" @click.prevent="submitHandler">Add Question </button>
+          </form>
+        </div>     
+      </div> 
     </div>
-  </template>
 
-  <script>
+  </div>
+</template>
+
+<script>
 import { mapActions } from 'vuex';
 import { mapState } from 'vuex'
 import ReadingText from './ReadingText';
 import QuestionTypeSelector from './QuestionTypeSelector';
 import Answers from './Answers';
+import { required } from 'vuelidate/lib/validators'
 
 export default {
   data() {
     return {
+      text: '',
       question: {}
     };
   },
@@ -69,10 +74,10 @@ export default {
   methods: {
     ...mapActions([
       'addQuestion',
-    ]),
+      ]),
     submitHandler() {
       this.addQuestion(this.question)
-        .then(() => { this.question = {};});
+      .then(() => { this.question = {};});
     },
   },
   components: {
@@ -80,10 +85,17 @@ export default {
     Answers,
     QuestionTypeSelector,
   },
+  validations: {
+    question: {
+      text: {
+        required
+      }
+    },
+  }
 };
 </script>
 
- <style>
+<style>
 .right {
   float: right;
 }

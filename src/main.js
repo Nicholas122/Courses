@@ -3,10 +3,9 @@
 import Vue from 'vue'
 import App from './App';
 import store from './store'
-import VueResource from 'vue-resource'
 import router from './router'
-
-Vue.use(VueResource);
+import Vuelidate from 'vuelidate'
+Vue.use(Vuelidate)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
