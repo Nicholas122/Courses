@@ -6,7 +6,7 @@
       </div>
       <div class="card-body" v-if="question.type != 'READING_TEXT'">
         <p><span class="question-info">Question text:</span> {{question.text}}</p>
-        <p><span class="question-info">Question type:</span> {{ question.type }}</p>
+        <p><span class="question-info">Question type:</span> {{ getConst(question.type) }}</p>
         <p><span class="question-info">Weight:</span> {{ question.weight }}</p>
         <span class="question-info" v-if="question.answers.length > 0">Answers:</span>
         <div class="row marg" v-for="(answer) in question.answers" :key="answer.id" >
@@ -51,8 +51,8 @@ export default {
     removeQuestion() {
       this.deleteQuestion(this.question.id);
     },
-    editQuestions() {
-
+    getConst(constName) {
+      return types[constName];
     },
   },
 
