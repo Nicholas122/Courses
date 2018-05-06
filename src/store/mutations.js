@@ -7,7 +7,17 @@ import {
   DELETE_READING_QUESTION,
   SET_QUESTION_TYPE,
   SET_READING_TEXT,
-  SET_SECTIONS
+  SET_SECTIONS,
+  CREATE_TEST_REQUEST,
+  CREATE_TEST_SUCCESSFUL,
+  CREATE_TEST_FAILURE,
+  SET_TEST_TITLE,
+  SET_TEST_DESCRIPTION,
+  SET_TEST_SECTION,
+  SET_TEST_TIME_LIMIT,
+  SET_TEST_RATE,
+  SET_TEST_RETAKE_TIMEOUT,
+  MERGE_TEST_DATA
 } from './mutationTypes';
 
 export default {
@@ -57,4 +67,60 @@ export default {
   [SET_SECTIONS](state, sections) {
     state.sections = sections;
   },
+
+  [CREATE_TEST_REQUEST](state) {
+    state.test.creating = true;
+  },
+  [CREATE_TEST_SUCCESSFUL](state) {
+    state.questions = [];
+    
+    state.test = {
+      fetching: false,
+      creating: false,
+      error: false,
+      errors: {},
+      data: {}
+    };
+  },
+  [CREATE_TEST_FAILURE](state, errors) {
+    state.test = {
+      creating: false,
+      error: true,
+      errors: errors,
+    };
+  },
+
+  [SET_TEST_TITLE](state, title) {
+    state.test.data.title = title;
+  },
+
+  [SET_TEST_TITLE](state, title) {
+    state.test.data.title = title;
+  },
+
+  [SET_TEST_DESCRIPTION](state, description) {
+    state.test.data.description = description;
+  },
+
+  [SET_TEST_SECTION](state, section) {
+    state.test.data.section = section;
+  },
+
+  [SET_TEST_TIME_LIMIT](state, timeLimit) {
+    state.test.data.timeLimit = timeLimit;
+  },
+
+  [SET_TEST_RATE](state, rate) {
+    state.test.data.rate = rate;
+  },
+
+  [SET_TEST_RETAKE_TIMEOUT](state, retakeTimeOut) {
+    state.test.data.retakeTimeOut = retakeTimeOut;
+  },
+
+  [MERGE_TEST_DATA](state) {
+    state.test.data.questions = state.questions;
+  },
+
+
 };

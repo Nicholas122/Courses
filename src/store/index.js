@@ -31,7 +31,25 @@ export default new Vuex.Store({
       return state.readingText
     },
     getAnswersByQustionsId: (state) => (id) => {
-    return state.answers.find(answer => answer.questionId === id)
-  }
+      return state.answers.find(answer => answer.questionId === id)
+    },
+    getTestTitle: state => {
+      return state.test.data.title;
+    },
+    getTestDescription: state => {
+      return state.test.data.description;
+    },
+    getTestSection: state => {
+      return state.test.data.section;
+    },
+    getTestTimeLimit: state => {
+      return state.test.data.timeLimit;
+    },  
+    getTestRetakeTimeout: state => {
+      return state.test.data.retakeTimeout;
+    },
+    getTestRate: state => {
+      return state.test.data.rate;
+    },  
   }
 });
