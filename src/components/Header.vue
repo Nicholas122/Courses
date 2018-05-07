@@ -9,11 +9,11 @@
                             <label for="lTitle">Title</label>
                             <input id="lTitle" name="lTitle" type="text" maxlength="300" placeholder="Max length 300" v-model="title"
                             :class="['form-control', {
-                            'has-error': errors.title,
-                            'valid': !errors.title,
+                            'has-error': requestErrors.title,
+                            'valid': !requestErrors.title,
                         }]" >
-                        <span class="error-message" v-if="errors.title">
-                          {{ errors.title }}
+                        <span class="error-message" v-if="requestErrors.title">
+                          {{ requestErrors.title }}
                       </span>
                   </div>
 
@@ -21,11 +21,11 @@
                     <label for="lDescription">Description</label>
                     <input id="lDescription" name="lDescription" type="text" maxlength="500" placeholder="Max length 500" v-model="description"
                     :class="['form-control', {
-                    'has-error': errors.description,
-                    'valid': !errors.description,
+                    'has-error': requestErrors.description,
+                    'valid': !requestErrors.description,
                 }]" >
-                <span class="error-message" v-if="errors.description">
-                  {{ errors.description }}
+                <span class="error-message" v-if="requestErrors.description">
+                  {{ requestErrors.description }}
               </span>
           </div>
 
@@ -33,13 +33,13 @@
             <label for="CourseSection">Select Section</label>                
             <select name="CourseSection" id="CourseSection" v-model="section"
             :class="['form-control', {
-            'has-error': errors.section,
-            'valid': !errors.section,
+            'has-error': requestErrors.section,
+            'valid': !requestErrors.section,
         }]">
         <option v-for="section in sections" v-bind:value="section.id">{{section.name}}</option>
     </select>
-    <span class="error-message" v-if="errors.section">
-      {{ errors.section }}
+    <span class="error-message" v-if="requestErrors.section">
+      {{ requestErrors.section }}
   </span>
 </div>
 <div class="col-md-4">
@@ -47,11 +47,11 @@
     <label for="lTimeLimits" class="control-label">Time limit</label>
     <input id="lTimeLimits" name="lTimeLimits" type="number" min="0" maxlength="10" v-model="timeLimit"
     :class="['form-control', 'timeLimits', {
-    'has-error': errors.timeLimit,
-    'valid': !errors.timeLimit,
+    'has-error': requestErrors.timeLimit,
+    'valid': !requestErrors.timeLimit,
 }]">
-<span class="error-message" v-if="errors.timeLimit">
-    {{ errors.timeLimit }}
+<span class="error-message" v-if="requestErrors.timeLimit">
+    {{ requestErrors.timeLimit }}
 </span>
 <label class="timePHolders">* sets the test time limit in minutes</label>
 </div>
@@ -61,11 +61,11 @@
 }lTestRate" class="control-label">Pass/fail score</label>
 <input id="lTestRate" name="lTestRate" type="number" min="0" max="100" value="60" v-model="testRate" 
 :class="['form-control', 'timeLimits', {
-'has-error': errors.passingScorePercent,
-'valid': !errors.passingScorePercent,
+'has-error': requestErrors.passingScorePercent,
+'valid': !requestErrors.passingScorePercent,
 }]">
-<span class="error-message" v-if="errors.passingScorePercent">
-    {{ errors.passingScorePercent }}
+<span class="error-message" v-if="requestErrors.passingScorePercent">
+    {{ requestErrors.passingScorePercent }}
 </span>
 <label class="timePHolders">* passing score in percent</label>
 </div>
@@ -73,11 +73,11 @@
     <label class="control-label">Retake timeout</label>
     <input id="lRetakeTimeout" name="lRetakeTimeout" type="number" min="1" max="365" v-model="retakeTimeout"
     :class="['form-control', 'timeLimits', {
-    'has-error': errors.retakeTimeout,
-    'valid': !errors.retakeTimeout,
+    'has-error': requestErrors.retakeTimeout,
+    'valid': !requestErrors.retakeTimeout,
 }]">
-<span class="error-message" v-if="errors.retakeTimeout">
-    {{ errors.retakeTimeout }}
+<span class="error-message" v-if="requestErrors.retakeTimeout">
+    {{ requestErrors.retakeTimeout }}
 </span>
 <label class="timePHolders">* period of time after which a user can retake the test in days</label>
 </div>
@@ -109,7 +109,7 @@ computed: {
         ]),
     ...mapState({
         sections: state => state.sections,
-        errors: state => state.test.errors,
+        requestErrors: state => state.test.errors,
     }),
     title: {
       get() {

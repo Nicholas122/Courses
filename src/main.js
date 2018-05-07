@@ -4,8 +4,10 @@ import Vue from 'vue'
 import App from './App';
 import store from './store'
 import router from './router'
-import Vuelidate from 'vuelidate'
-Vue.use(Vuelidate)
+
+import VeeValidate from 'vee-validate'
+Vue.use(VeeValidate);
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
