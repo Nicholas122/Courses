@@ -38,7 +38,7 @@
             </div>
             <div v-if="questionType == 'MULTIPLY_CHOISE'">
               <div class="card">
-                <Answers :questionId="question.id"> </Answers>
+                <Answers :questionId="1"> </Answers>
               </div>        
             </div>
             <div v-if="questionType == 'READING_TEXT'">
@@ -106,7 +106,7 @@ export default {
 .help {
     background: white;
     }
-    
+
 .has-error {
     border-color: #dc3545;
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);

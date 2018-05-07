@@ -38,8 +38,8 @@ export default new Vuex.Store({
     getReadingText: state => {
       return state.readingText
     },
-    getAnswersByQustionsId: (state) => (id) => {
-      return state.answers.find(answer => answer.questionId === id)
+    getAnswersByQuestionId: (state) => (id) => {
+      return state.answers.filter(answer => answer.questionId === id);
     },
     getTestTitle: state => {
       return state.test.data.title;

@@ -29,7 +29,7 @@ export default {
   },
   [ADD_QUESTION](state, question) {
     question.id = state.questions.length + 1;
-    question.answers = state.answers;
+    question.answers = state.answers.filter(answer => answer.questionId === question.id);;
     question.type = state.questionType;
 
     if (question.type === 'READING_TEXT') {
@@ -48,7 +48,7 @@ export default {
     state.answers = state.answers.filter(i => i.id !== id);
   },
   [ADD_ANSWER](state, answer) {
-    answer.id = state.answers.length + 1;
+    answer.id = state.answers.filter(item => item.questionId === answer.questionId).length + 1;
     state.answers.push(answer);
   },
   [SET_READING_TEXT](state, text) {
@@ -59,7 +59,7 @@ export default {
   },
   [ADD_READING_QUESTION](state, question) {
     question.id = state.readingQuestions.length + 1;
-    question.answers = state.answers;
+    question.answers = state.answers.filter(answer => answer.questionId === question.id);
     state.answers = [];
 
     state.readingQuestions.push(question);
