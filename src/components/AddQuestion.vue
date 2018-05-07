@@ -18,12 +18,12 @@
                   <option  value="4">4</option>
                   <option  value="5">5</option>
                 </select>
-                <span v-show="errors.has('weight')" class="help error-message">{{ errors.first('weight') }}</span>
+                <span v-show="errors.has('weight')" class="help error-message">This value should not be blank.</span>
                 </div>
               </div>
               <div class="form-group">
                 <textarea name="question" v-validate="'required'" :class="{ 'form-control': true, 'has-error': errors.has('question') }" type="text" id="question-text" rows="5" class="form-control mb-2"  placeholder="Please enter text for question" v-model.trim="question.text" ></textarea>
-                <span v-show="errors.has('question')" class="help error-message">{{ errors.first('question') }}</span>
+                <span v-show="errors.has('question')" class="help error-message">This value should not be blank.</span>
               </div>
              
             
