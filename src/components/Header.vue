@@ -7,52 +7,98 @@
                     <div class="row" >
                         <div class="col-md-4" >
                             <label for="lTitle">Title</label>
-                            <input id="lTitle" name="lTitle" class="form-control" type="text" maxlength="300" placeholder="Max length 300" v-model="title">
-                        </div>
+                            <input id="lTitle" name="lTitle" type="text" maxlength="300" placeholder="Max length 300" v-model="title"
+                            :class="['form-control', {
+                            'has-error': errors.title,
+                            'valid': !errors.title,
+                        }]" >
+                        <span class="error-message" v-if="errors.title">
+                          {{ errors.title }}
+                      </span>
+                  </div>
 
-                        <div class="col-md-4">
-                            <label for="lDescription">Description</label>
-                            <input id="lDescription" name="lDescription" class="form-control" type="text" maxlength="500" placeholder="Max length 500" v-model="description">
-                        </div>
+                  <div class="col-md-4">
+                    <label for="lDescription">Description</label>
+                    <input id="lDescription" name="lDescription" type="text" maxlength="500" placeholder="Max length 500" v-model="description"
+                    :class="['form-control', {
+                    'has-error': errors.description,
+                    'valid': !errors.description,
+                }]" >
+                <span class="error-message" v-if="errors.description">
+                  {{ errors.description }}
+              </span>
+          </div>
 
-                        <div class="col-md-4">
-                            <label for="CourseSection">Select Section</label>                
-                            <select name="CourseSection" id="CourseSection" class="form-control" v-model="section">
-                                <option v-for="section in sections" v-bind:value="section.id">{{section.name}}</option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <!--Time Limits-->
-                            <label for="lTimeLimits" class="control-label">Time limit</label>
-                            <input id="lTimeLimits" name="lTimeLimits" class="form-control  timeLimits" type="number" min="0" maxlength="10" v-model="timeLimit">
-                            <label class="timePHolders">* sets the test time limit in minutes</label>
-                        </div>
-                        <div class="col-md-4">
-                            <label for=": {
+          <div class="col-md-4">
+            <label for="CourseSection">Select Section</label>                
+            <select name="CourseSection" id="CourseSection" v-model="section"
+            :class="['form-control', {
+            'has-error': errors.section,
+            'valid': !errors.section,
+        }]">
+        <option v-for="section in sections" v-bind:value="section.id">{{section.name}}</option>
+    </select>
+    <span class="error-message" v-if="errors.section">
+      {{ errors.section }}
+  </span>
+</div>
+<div class="col-md-4">
+    <!--Time Limits-->
+    <label for="lTimeLimits" class="control-label">Time limit</label>
+    <input id="lTimeLimits" name="lTimeLimits" type="number" min="0" maxlength="10" v-model="timeLimit"
+    :class="['form-control', 'timeLimits', {
+    'has-error': errors.timeLimit,
+    'valid': !errors.timeLimit,
+}]">
+<span class="error-message" v-if="errors.timeLimit">
+    {{ errors.timeLimit }}
+</span>
+<label class="timePHolders">* sets the test time limit in minutes</label>
+</div>
+<div class="col-md-4">
+    <label for=": {
 
-                        }lTestRate" class="control-label">Pass/fail score</label>
-                        <input id="lTestRate" name="lTestRate" class="form-control  timeLimits" type="number" min="0" max="100" value="60" v-model="testRate">
-                        <label class="timePHolders">* passing score in percent</label>
-                    </div>
-                    <div class="col-md-4">
-                        <label class="control-label">Retake timeout</label>
-                        <input id="lRetakeTimeout" name="lRetakeTimeout" class="form-control  timeLimits" type="number" min="1" max="365" v-model="retakeTimeout">
-                        <label class="timePHolders">* period of time after which a user can retake the test in days</label>
-                    </div>
-                </div>
+}lTestRate" class="control-label">Pass/fail score</label>
+<input id="lTestRate" name="lTestRate" type="number" min="0" max="100" value="60" v-model="testRate" 
+:class="['form-control', 'timeLimits', {
+'has-error': errors.passingScorePercent,
+'valid': !errors.passingScorePercent,
+}]">
+<span class="error-message" v-if="errors.passingScorePercent">
+    {{ errors.passingScorePercent }}
+</span>
+<label class="timePHolders">* passing score in percent</label>
+</div>
+<div class="col-md-4">
+    <label class="control-label">Retake timeout</label>
+    <input id="lRetakeTimeout" name="lRetakeTimeout" type="number" min="1" max="365" v-model="retakeTimeout"
+    :class="['form-control', 'timeLimits', {
+    'has-error': errors.retakeTimeout,
+    'valid': !errors.retakeTimeout,
+}]">
+<span class="error-message" v-if="errors.retakeTimeout">
+    {{ errors.retakeTimeout }}
+</span>
+<label class="timePHolders">* period of time after which a user can retake the test in days</label>
+</div>
+</div>
 
 
-            </div>
-        </div>
-    </form>
+</div>
+</div>
+</form>
 </div>
 </template> 
 <script>
 import {mapState, mapActions, mapGetters } from 'vuex';
+import MaskedInput from 'vue-text-mask';
 
 export default {
   props: ['courseId'],
-  computed: {
+  components: {
+    MaskedInput,
+},  
+computed: {
     ...mapGetters([
         'getTestTitle',
         'getTestDescription',
@@ -63,6 +109,7 @@ export default {
         ]),
     ...mapState({
         sections: state => state.sections,
+        errors: state => state.test.errors,
     }),
     title: {
       get() {
@@ -139,5 +186,14 @@ mounted() {
 }
 .testLimits {
     margin: 20px;
+}
+
+.has-error {
+    border-color: #dc3545;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+}
+.error-message {
+    color: #dc3545;
 }
 </style>

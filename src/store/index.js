@@ -42,7 +42,6 @@ export default new Vuex.Store({
       return state.answers.find(answer => answer.questionId === id)
     },
     getTestTitle: state => {
-      console.log(state.test);
       return state.test.data.title;
     },
     getTestDescription: state => {

@@ -93,7 +93,7 @@ export default {
   [CREATE_TEST_FAILURE](state, errors) {
     state.test.creating = false;
     state.test.error = true;
-    state.test.errors = errors;
+    state.test.errors = errors.errors.response.data.form.children;
   },
 
   [SET_TEST_TITLE](state, title) {
