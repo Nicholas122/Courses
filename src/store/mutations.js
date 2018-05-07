@@ -79,15 +79,21 @@ export default {
       creating: false,
       error: false,
       errors: {},
-      data: {}
+      data: {
+        title: '',
+        questions: [],
+        description: '',
+        section: '',
+        timeLimit: '',
+        passingScorePercent: '',
+        retakeTimeout: ''
+      }
     };
   },
   [CREATE_TEST_FAILURE](state, errors) {
-    state.test = {
-      creating: false,
-      error: true,
-      errors: errors,
-    };
+    state.test.creating = false;
+    state.test.error = true;
+    state.test.errors = errors;
   },
 
   [SET_TEST_TITLE](state, title) {
@@ -111,11 +117,11 @@ export default {
   },
 
   [SET_TEST_RATE](state, rate) {
-    state.test.data.rate = rate;
+    state.test.data.passingScorePercent = rate;
   },
 
-  [SET_TEST_RETAKE_TIMEOUT](state, retakeTimeOut) {
-    state.test.data.retakeTimeOut = retakeTimeOut;
+  [SET_TEST_RETAKE_TIMEOUT](state, retakeTimeout) {
+    state.test.data.retakeTimeout = retakeTimeout;
   },
 
   [MERGE_TEST_DATA](state) {

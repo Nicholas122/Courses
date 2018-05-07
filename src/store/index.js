@@ -12,7 +12,15 @@ const state = {
     creating: false,
     error: false,
     errors: {},
-    data: {}
+    data: {
+      title: '',
+      questions: [],
+      description: '',
+      section: '',
+      timeLimit: '',
+      passingScorePercent: '',
+      retakeTimeout: ''
+    }
   },
   questionType: Object.keys(types)[0],
   questions: [],
@@ -34,6 +42,7 @@ export default new Vuex.Store({
       return state.answers.find(answer => answer.questionId === id)
     },
     getTestTitle: state => {
+      console.log(state.test);
       return state.test.data.title;
     },
     getTestDescription: state => {
@@ -49,7 +58,7 @@ export default new Vuex.Store({
       return state.test.data.retakeTimeout;
     },
     getTestRate: state => {
-      return state.test.data.rate;
+      return state.test.data.passingScorePercent;
     },  
   }
 });

@@ -5,7 +5,7 @@ export const instance = axios.create({
 });
 
 export const createTest = data => (
-	instance.post('/test', {test: data}).then(res => res.data)
+	instance.post('/test', data).then(res => res.data)
 	);
 
 export const getSections = courseId => instance.get(`/sections?course=${courseId}`).then(({ data }) => data);
