@@ -50,29 +50,37 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import { mapState } from 'vuex'
 import ReadingText from './ReadingText';
 import QuestionTypeSelector from './QuestionTypeSelector';
 import Answers from './Answers';
 import VeeValidate from 'vee-validate'
 
+
 export default {
 
   data() {
     return {
-      text: '',
-      question: {},
+      question: {
+      },
       
     };
   },
-  created: function(){
+  mounted() {
+      //this.editQuestion(this.question.id);
+    },
+    computed: {
+     ...mapGetters ([
+       'getQuestionText'
+       ]),
 
-  },
-  computed: mapState({
-    questionType: state => state.questionType,
-  }),
-  methods: {
+     ...mapState({
+      questionType: state => state.questionType,
+
+    }),
+   },
+   methods: {
     ...mapActions([
       'addQuestion',
       ]),
@@ -82,8 +90,6 @@ export default {
           this.addQuestion(this.question).then(() => { this.question ={};})
         }
       });
-
-
     },
 
   },

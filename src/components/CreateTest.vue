@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row">
-      <question-header :courseId="courseId"/>
+      <question-header :headerTitle="headerTitle"> </question-header>
     </div>
 
     <div class="row">
@@ -9,7 +9,6 @@
         <questions></questions>
 
         <button v-if="this.questions" class="btn btn-success create-test-btn"  @click.prevent="createTest">Create test</button>
-
       </div>
       <div class="col-md-6">
         <add-question></add-question>
@@ -29,9 +28,12 @@ export default {
   props: ['courseId'],
   data() {
     return {
-      mode: "AddView",
-      editedQuestion: {}
+      editedQuestion: {},
+      headerTitle: 'Create test',
     };
+  },
+  created() {
+      this.setCourseId(this.courseId);
   },
   computed: mapState({
     questions: state => state.questions,
@@ -45,7 +47,8 @@ export default {
   methods: {
     ...mapActions([
       'createTestRequest',
-      'mergeTestData'
+      'mergeTestData',
+      'setCourseId'
       ]),
     createTest() {
       this.mergeTestData()

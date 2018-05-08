@@ -10,3 +10,6 @@ export const createTest = data => (
 
 export const getSections = courseId => instance.get(`/sections?course=${courseId}`).then(({ data }) => data);
 
+export const getTest = testId => instance.get(`/test/${testId}`);
+
+export const getQuestion = testId => instance.get(`/questions?test=${testId}`).then(({ data }) => data);

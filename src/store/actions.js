@@ -17,7 +17,10 @@ import {
   SET_TEST_TIME_LIMIT,
   SET_TEST_RATE,
   SET_TEST_RETAKE_TIMEOUT,
-  MERGE_TEST_DATA
+  MERGE_TEST_DATA,
+  SET_TEST_DATA,
+  SET_QUESTION_DATA,
+  SET_COURSE_ID
 } from './mutationTypes';
 import * as api from '../helpers/api';
 
@@ -88,6 +91,18 @@ export const createTestRequest = ({ commit }, data) => {
   commit(CREATE_TEST_REQUEST);
 
   return api.createTest(data)
-    .then(r => commit(CREATE_TEST_SUCCESSFUL, { data: r }))
-    .catch(errors => commit(CREATE_TEST_FAILURE, { errors }));
-};
+  .then(r => commit(CREATE_TEST_SUCCESSFUL, { data: r }))
+  .catch(errors => commit(CREATE_TEST_FAILURE, { errors }));
+}
+
+export const fetchTest = ({commit}, testId) => {
+  return api.getTest(testId).then(data => commit(SET_TEST_DATA, data));
+}
+
+export const fetchQuestion = ({commit}, testId) => {
+  return api.getQuestion(testId).then(data => commit(SET_QUESTION_DATA, data));
+}
+
+export const setCourseId = ({commit}, courseId) => {
+  commit(SET_COURSE_ID, courseId);
+}

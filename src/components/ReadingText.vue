@@ -11,13 +11,17 @@
         </div>
 
         <div  v-for="(readingQuestion, index)  in readingQuestions" :key="readingQuestion.id" >
-
-          <div class="col-lg-12 ">
-           <h4>
-            Question - {{ index + 1 }}
-            <span  style="color:#dc3545;cursor:pointer" @click.prevent="removereadingQuestion(readingQuestion.id)" class="glyphicon glyphicon-remove pull-right" aria-hidden="true"></span>
-          </h4>
-        </div>
+          
+           <div class="row marg yes-marg">
+              <div class="col-lg-11 no-padd">
+                <h4>
+                  Question - {{ index + 1 }}
+                </h4>
+              </div>
+              <div class="col-lg-1 no-padd text-center">
+                <span  style="color:#dc3545;cursor:pointer" @click.prevent="removereadingQuestion(readingQuestion.id)"><b>X</b> </span>
+              </div>
+            </div>  
         <div class="col-lg-12 ">
           <textarea placeholder="Please enter the question" class="form-control " :id="readingQuestion.id" v-model="readingQuestion.questionText"></textarea>
         </div>

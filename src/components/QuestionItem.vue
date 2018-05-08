@@ -58,15 +58,16 @@
  </div>  
 
  <div class="card-body">
-   <button class="btn btn-secondary edit-btn" @click.prevent="editQuestions"> Edit </button>
+   <button class="btn btn-secondary edit-btn" @click.prevent="editQuestions(index)"> Edit </button>
    <button class="btn btn-danger edit-btn" @click.prevent="removeQuestion"> Delete </button>
  </div>
 </div> 
-</div>   
+ 
 </template>
 <script>
-import { mapActions } from 'vuex';
+import { mapActions , mapState} from 'vuex';
 import * as types from '../store/questionTypes';
+
 
 export default {
   props: {
@@ -80,13 +81,19 @@ export default {
   methods: {
     ...mapActions([
       'deleteQuestion',
-      ]),
+      'editQuestion'
+       ]),
     removeQuestion() {
       this.deleteQuestion(this.question.id);
     },
     getConst(constName) {
       return types[constName];
     },
+    editQuestions(id)
+    {
+      console.log(id)
+      this.editQuestion(id)
+    }
   },
 
 }

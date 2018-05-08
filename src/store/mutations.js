@@ -17,7 +17,10 @@ import {
   SET_TEST_TIME_LIMIT,
   SET_TEST_RATE,
   SET_TEST_RETAKE_TIMEOUT,
-  MERGE_TEST_DATA
+  MERGE_TEST_DATA,
+  SET_TEST_DATA,
+  SET_QUESTION_DATA,
+  SET_COURSE_ID
 } from './mutationTypes';
 
 export default {
@@ -130,5 +133,22 @@ export default {
     state.test.data.questions = state.questions;
   },
 
+  [SET_TEST_DATA](state, data) {
+    state.courseId = data.data.section.course.id;
+    state.test.data.title = data.data.title;
+    state.test.data.description = data.data.description;
+    state.test.data.section = data.data.section;
+    state.test.data.timeLimit = data.data.timeLimit;
+    state.test.data.passingScorePercent = data.data.passingScorePercent;
+    state.test.data.retakeTimeout = data.data.retakeTimeout;
+  },
+
+  [SET_QUESTION_DATA](state, data) {
+    state.questions = data;
+  },
+
+  [SET_COURSE_ID](state, courseId) {
+    state.courseId = courseId;
+  }
 
 };

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import CreateTest from '@/components/CreateTest'
+import EditTests from '@/components/EditTests'
 
 Vue.use(Router);
 
@@ -10,6 +11,11 @@ export default new Router({
     {
       path: '/test/new/:courseId',
       component: CreateTest,
+      props: true
+    },
+    {
+      path: '/test/:testId',
+      component: EditTests,
       props: true
     }
   ]

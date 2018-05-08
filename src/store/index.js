@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import * as actions from './actions';
 import mutations from './mutations';
 import * as types from './questionTypes';
+import _ from 'lodash'
 
 Vue.use(Vuex);
 
@@ -27,7 +28,8 @@ const state = {
   answers: [],
   readingQuestions: [],
   readingText: '',
-  sections: []
+  sections: [],
+  courseId: ''
 };
 
 export default new Vuex.Store({
@@ -58,6 +60,11 @@ export default new Vuex.Store({
     },
     getTestRate: state => {
       return state.test.data.passingScorePercent;
-    },  
-  }
+    },
+    getQuestionText: state => {
+      return state.test.data.title;
+    },
+
+  },
+
 });
