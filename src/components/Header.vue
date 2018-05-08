@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="col-md-12">
         <h2 class="page-header">Create Test</h2>
         <form class="form-group">
             <div class="testBorder">

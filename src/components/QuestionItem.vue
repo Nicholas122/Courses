@@ -1,11 +1,11 @@
 <template>
-  <div class="container">
-    <div class="row">
+  <div class="card">
+    <div class="card-header">
       <div  class="col-md-12">
         <h3>Question {{ index }}</h3>
       </div>
     </div>
-    <div class="row">
+    <div class="card-body">
       <div class="col-md-12" v-if="question.type != 'READING_TEXT'">
         <p><span class="question-info">Question text:</span> {{question.text}}</p>
         <p><span class="question-info">Question type:</span> {{ getConst(question.type) }}</p>

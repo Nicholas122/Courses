@@ -6,7 +6,6 @@
       </div>
       <div class="card-body">
         <form @submit.prevent="create">
-          <label for="question-text"><b> Question:</b></label>
           <div class="form-group right">
             <label><b>Choose weight:</b></label> 
             <select  name="weight" v-validate="'required'" :class="{ 'form-control': true, 'has-error': errors.has('weight') }" id="question-weigth"  v-model="question.weight" >
@@ -26,18 +25,18 @@
           <label for=""></label>
           <div v-if="questionType == 'USER_INPUT'">
             <div class="card">
-              <div class="card-header">
+              <div class="card-body">
                 <h4>User must answer of this question </h4>
               </div>
             </div>
           </div>
           <div v-if="questionType == 'MULTIPLY_CHOISE'">
-            <div class="card">
+            <div class="card-body">
               <Answers :questionId="1"> </Answers>
             </div>        
           </div>
           <div v-if="questionType == 'READING_TEXT'">
-            <div class="card">
+            <div class="card-body">
               <readingText></readingText>
             </div>
           </div>

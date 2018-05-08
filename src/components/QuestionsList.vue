@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <QuestionItem v-for="(question, i) in questions" 
     :key="question.id"
     :question="question" 

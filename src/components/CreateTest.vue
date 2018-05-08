@@ -5,14 +5,13 @@
     </div>
 
     <div class="row">
-      <div class="col-md-6 col-padding-0">
+      <div class="col-md-6">
         <questions></questions>
 
-        <div class="container" v-if="this.questions">
-          <button class="btn btn-success create-test-btn"  @click.prevent="createTest">Create test</button>
-        </div>
+        <button v-if="this.questions" class="btn btn-success create-test-btn"  @click.prevent="createTest">Create test</button>
+
       </div>
-      <div class="col-md-6 col-padding-0">
+      <div class="col-md-6">
         <add-question></add-question>
       </div>
     </div>
