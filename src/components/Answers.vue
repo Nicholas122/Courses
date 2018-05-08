@@ -7,23 +7,24 @@
         <!-- <a href="#" class=" btn btn-danger edit-btn " @click="deleteAnswers"> Delete answer </a> -->
 
         <button  class="btn btn-success" @click.prevent="createAnswer">Add answer </button>
-        <button  class="btn btn-danger" @click.prevent="removeAnswer">Delete answer </button>
       </h4>
     </div>
 
     <div class="card-body">
-      <div class="row marg" v-for="answer in answers" :key="answer.id" >
+      <div class="row marg" v-for="(answer, index) in answers" :key="answer.id" >
 
        <div class="col-lg-1 no-padd text-center">
-         <span><b>{{ answer.id }})</b></span>
+         <span><b>{{ index + 1}})</b></span>
        </div>
-       <div class="col-lg-10">
+       <div class="col-lg-8">
          <input type="text" placeholder="Please enter the answer" class="form-control" v-model="answer.text">
        </div>
        <div class="col-lg-1">
          <input type="checkbox"  :id="answer.id"  v-model="answer.correct">
        </div>
-
+       <div class="col-lg-1 no-padd text-center">
+        <span  style="color:#dc3545;cursor:pointer" @click.prevent="removeAnswer(answer.uid)" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+       </div>
      </div>
    </div> 
    <!-- <button  class="btn btn-success" @click="addAnswers">Add answer </button> -->
@@ -58,8 +59,8 @@ export default {
 
       this.addAnswer(answer);
     },
-    removeAnswer(id) {
-      this.deleteAnswer(id);
+    removeAnswer(uid) {
+      this.deleteAnswer(uid);
     }
   }
 

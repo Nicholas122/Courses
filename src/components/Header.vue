@@ -189,11 +189,15 @@ mounted() {
 }
 
 .has-error {
-    border-color: #dc3545;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  border-color: #dc3545 !important;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075) !important;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075) !important;
 }
 .error-message {
     color: #dc3545;
+}
+
+#CourseSection {
+  height: 34px;
 }
 </style>

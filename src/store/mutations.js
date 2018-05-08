@@ -44,18 +44,20 @@ export default {
 
     state.questions.push(question);
   },
-  [DELETE_ANSWER](state, { id }) {
-    state.answers = state.answers.filter(i => i.id !== id);
+  [DELETE_ANSWER](state, { uid }) {
+    state.answers = state.answers.filter(i => i.uid !== uid);
   },
   [ADD_ANSWER](state, answer) {
     answer.id = state.answers.filter(item => item.questionId === answer.questionId).length + 1;
+    answer.uid = state.answers.length + 1;
+    
     state.answers.push(answer);
   },
   [SET_READING_TEXT](state, text) {
     state.readingText = text;
   },
   [DELETE_READING_QUESTION](state, { id }) {
-    state.readingQuestions = state.questions.filter(i => i.id !== id);
+    state.readingQuestions = state.readingQuestions.filter(i => i.id !== id);
   },
   [ADD_READING_QUESTION](state, question) {
     question.id = state.readingQuestions.length + 1;

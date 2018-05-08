@@ -37,8 +37,8 @@ export const addAnswer = ({ commit }, data) => (
   commit(ADD_ANSWER, data)
   );
 
-export const deleteAnswer = ({ commit }, id) => (
-  commit(DELETE_ANSWER, { id })
+export const deleteAnswer = ({ commit }, uid) => (
+  commit(DELETE_ANSWER, { uid })
   );
 
 export const addReadingQuestion = ({ commit }, data) => (

@@ -1,56 +1,50 @@
 <template>
   <div>
-    <div class="container">
-      <div class="card">
-        <div  class="card-header">
-          <h3>Create Question </h3>
-        </div>
-        <div class="card-body">
-          <form @submit.prevent="create">
-            <div class="form-group">
-              <label for="question-text"><b> Question:</b></label>
-              <div class="right">
-                <label><b>Choose weight:</b></label> 
-                <select  name="weight" v-validate="'required'" :class="{ 'form-control': true, 'has-error': errors.has('weight') }" id="question-weigth"  v-model="question.weight" >
-                  <option  value="1">1</option>
-                  <option  value="2">2</option>
-                  <option  value="3">3</option>
-                  <option  value="4">4</option>
-                  <option  value="5">5</option>
-                </select>
-                <span v-show="errors.has('weight')" class="help error-message">This value should not be blank.</span>
-                </div>
-              </div>
-              <div class="form-group">
-                <textarea name="question" v-validate="'required'" :class="{ 'form-control': true, 'has-error': errors.has('question') }" type="text" id="question-text" rows="5" class="form-control mb-2"  placeholder="Please enter text for question" v-model.trim="question.text" ></textarea>
-                <span v-show="errors.has('question')" class="help error-message">This value should not be blank.</span>
-              </div>
-             
-            
-            <QuestionTypeSelector />
-            <label for=""></label>
-            <div v-if="questionType == 'USER_INPUT'">
-              <div class="card">
-                <div class="card-header">
-                  <h4>User must answer of this question </h4>
-                </div>
+    <div class="card">
+      <div  class="card-header">
+        <h3>Create Question </h3>
+      </div>
+      <div class="card-body">
+        <form @submit.prevent="create">
+          <label for="question-text"><b> Question:</b></label>
+          <div class="form-group right">
+            <label><b>Choose weight:</b></label> 
+            <select  name="weight" v-validate="'required'" :class="{ 'form-control': true, 'has-error': errors.has('weight') }" id="question-weigth"  v-model="question.weight" >
+              <option  value="1">1</option>
+              <option  value="2">2</option>
+              <option  value="3">3</option>
+              <option  value="4">4</option>
+              <option  value="5">5</option>
+            </select>
+            <span v-show="errors.has('weight')" class="help error-message">This value should not be blank.</span>
+          </div>
+          <div class="form-group">
+            <textarea name="question" v-validate="'required'" :class="{ 'form-control': true, 'has-error': errors.has('question') }" type="text" id="question-text" rows="5"  placeholder="Please enter text for question" v-model.trim="question.text" ></textarea>
+            <span v-show="errors.has('question')" class="help error-message">This value should not be blank.</span>
+          </div>
+          <QuestionTypeSelector />
+          <label for=""></label>
+          <div v-if="questionType == 'USER_INPUT'">
+            <div class="card">
+              <div class="card-header">
+                <h4>User must answer of this question </h4>
               </div>
             </div>
-            <div v-if="questionType == 'MULTIPLY_CHOISE'">
-              <div class="card">
-                <Answers :questionId="1"> </Answers>
-              </div>        
+          </div>
+          <div v-if="questionType == 'MULTIPLY_CHOISE'">
+            <div class="card">
+              <Answers :questionId="1"> </Answers>
+            </div>        
+          </div>
+          <div v-if="questionType == 'READING_TEXT'">
+            <div class="card">
+              <readingText></readingText>
             </div>
-            <div v-if="questionType == 'READING_TEXT'">
-              <div class="card">
-                <readingText></readingText>
-              </div>
-            </div>
-            
-            <input :disabled="errors.any()" type="submit" class="btn btn-success marg"  value="Add Question"> 
-          </form>
-        </div>     
-      </div> 
+          </div>
+
+          <input :disabled="errors.any()" type="submit" class="btn btn-success marg"  value="Add Question"> 
+        </form>
+      </div>      
     </div>
 
   </div>
@@ -74,8 +68,8 @@ export default {
     };
   },
   created: function(){
-       
-      },
+
+  },
   computed: mapState({
     questionType: state => state.questionType,
   }),
@@ -83,16 +77,16 @@ export default {
     ...mapActions([
       'addQuestion',
       ]),
-      create: function() {
-          this.$validator.validateAll().then((result) => {
-              if (result) {
-                  this.addQuestion(this.question).then(() => { this.question ={};})
-              }
-          });
+    create: function() {
+      this.$validator.validateAll().then((result) => {
+        if (result) {
+          this.addQuestion(this.question).then(() => { this.question ={};})
+        }
+      });
 
 
-      },
- 
+    },
+
   },
   components: {
     ReadingText,
@@ -104,20 +98,17 @@ export default {
 
 <style>
 .help {
-    background: white;
-    }
+  background: white;
+}
 
 .has-error {
-    border-color: #dc3545;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  border-color: #dc3545 !important;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075) !important;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075) !important;
 }
 .error-message {
-    color: #dc3545;
+  color: #dc3545;
 }
-/* .form-control {
-    border:1px solid gray;
-} */
 .right {
   float: right;
 }
@@ -134,5 +125,9 @@ export default {
 .yes-marg {
   margin-left: 15px;
   margin-right: 15px;
+}
+
+#question-weigth {
+  height: 34px;
 }
 </style>
