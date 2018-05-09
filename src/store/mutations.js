@@ -53,8 +53,11 @@ export default {
     state.answers = state.answers.filter(i => i.uid !== uid);
   },
   [ADD_ANSWER](state, answer) {
-    answer.id = state.answers.filter(item => item.questionId === answer.questionId).length + 1;
-    answer.uid = state.answers.length + 1;
+    var maxId = parseInt(Math.max.apply(Math,state.answers.filter(item => item.questionId === answer.questionId).map(function(o){return o.id;}))) || 0;
+    var maxUid = parseInt(Math.max.apply(Math,state.answers.map(function(o){return o.uid;}))) || 0;
+
+    answer.id = maxId + 1;
+    answer.uid = maxUid + 1;
     
     state.answers.push(answer);
   },
