@@ -77,7 +77,6 @@ export default {
 
      ...mapState({
       questionType: state => state.questionType,
-
     }),
    },
    methods: {

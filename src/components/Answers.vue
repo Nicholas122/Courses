@@ -36,7 +36,6 @@ export default {
   props: ['questionId'],
   computed:{
     answers() {
-      console.log(this.$store.getters.getAnswersByQuestionId(this.questionId));
       return this.$store.getters.getAnswersByQuestionId(this.questionId);
     } 
   },

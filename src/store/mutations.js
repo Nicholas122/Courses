@@ -20,7 +20,9 @@ import {
   MERGE_TEST_DATA,
   SET_TEST_DATA,
   SET_QUESTION_DATA,
-  SET_COURSE_ID
+  SET_COURSE_ID,
+  EDIT_QUESTION,
+  FETCH_EDIT_QUESTION
 } from './mutationTypes';
 
 export default {
@@ -149,6 +151,42 @@ export default {
 
   [SET_COURSE_ID](state, courseId) {
     state.courseId = courseId;
+  },
+
+  [FETCH_EDIT_QUESTION](state, questionId) {
+    state.questionComponent = 'edit-question';
+    state.editedQuestion = state.questions.find(question => question.id === questionId);
+
+    state.answers = state.editedQuestion.answers;
+    state.questionType = state.editedQuestion.type;
+
+    if (state.editedQuestion.type === 'READING_TEXT') {
+      state.readingText = state.editedQuestion.readingText;
+      state.readingQuestions = state.editedQuestion.subQuestions;
+    }
+  },
+  [EDIT_QUESTION](state, data) {
+    var index = state.questions.findIndex(question => question.id === data.id);
+
+    if (state.questionType === 'USER_INPUT') {
+      state.answers = [];
+    }
+
+    data.answers = state.answers;
+    data.type = state.questionType;
+    state.answers = [];
+
+    if (state.questionType === 'READING_TEXT') {
+      data.subQuestions = state.readingQuestions;
+      data.readingText = state.readingText;
+
+      state.readingQuestions = [];
+      state.readingText = '';
+    }
+
+    state.questions[index] = data;
+    state.editedQuestion = {};
+    state.questionComponent = 'add-question';
   }
 
 };

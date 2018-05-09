@@ -12,7 +12,8 @@
 
       </div>
       <div class="col-md-6">
-        <add-question></add-question>
+        <component :is="questionComponent"></component>
+
       </div>
     </div>
   </div>
@@ -22,6 +23,7 @@
 import questionHeader from "./Header";
 import QuestionsList from "./QuestionsList";
 import AddQuestion from "./AddQuestion";
+import EditQuestion from "./EditQuestion";
 import { mapActions } from 'vuex';
 import { mapState } from 'vuex'
 
@@ -29,17 +31,17 @@ export default {
   props: ['testId'],
   data() {
     return {
-      editedQuestion: {},
       headerTitle: 'Edit test',
     };
   },
   created() {
-        this.fetchTest(this.testId);
-        this.fetchQuestion(this.testId);
+    this.fetchTest(this.testId);
+    this.fetchQuestion(this.testId);
   },
   computed: mapState({
     questions: state => state.questions,
     testData: state => state.test,
+    questionComponent: state => state.questionComponent
   }),
   components: {
     questionHeader,

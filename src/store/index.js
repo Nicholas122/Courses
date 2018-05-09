@@ -29,7 +29,9 @@ const state = {
   readingQuestions: [],
   readingText: '',
   sections: [],
-  courseId: ''
+  courseId: '',
+  questionComponent: 'add-question',
+  editedQuestion: {},
 };
 
 export default new Vuex.Store({

@@ -20,7 +20,9 @@ import {
   MERGE_TEST_DATA,
   SET_TEST_DATA,
   SET_QUESTION_DATA,
-  SET_COURSE_ID
+  SET_COURSE_ID,
+  EDIT_QUESTION,
+  FETCH_EDIT_QUESTION
 } from './mutationTypes';
 import * as api from '../helpers/api';
 
@@ -105,4 +107,12 @@ export const fetchQuestion = ({commit}, testId) => {
 
 export const setCourseId = ({commit}, courseId) => {
   commit(SET_COURSE_ID, courseId);
+}
+
+export const editQuestion = ({commit}, questionId) => {
+  commit(FETCH_EDIT_QUESTION, questionId);
+}
+
+export const saveQuestion = ({commit}, data) => {
+  commit(EDIT_QUESTION, data);
 }

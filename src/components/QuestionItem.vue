@@ -58,7 +58,7 @@
  </div>  
 
  <div class="card-body">
-   <button class="btn btn-secondary edit-btn" @click.prevent="editQuestions(index)"> Edit </button>
+   <button class="btn btn-secondary edit-btn" @click.prevent="editQuestions"> Edit </button>
    <button class="btn btn-danger edit-btn" @click.prevent="removeQuestion"> Delete </button>
  </div>
 </div> 
@@ -77,7 +77,7 @@ export default {
 
     }, 
     index: Number, 
-  },  
+  },
   methods: {
     ...mapActions([
       'deleteQuestion',
@@ -89,10 +89,9 @@ export default {
     getConst(constName) {
       return types[constName];
     },
-    editQuestions(id)
+    editQuestions()
     {
-      console.log(id)
-      this.editQuestion(id)
+      this.editQuestion(this.question.id)
     }
   },
 
