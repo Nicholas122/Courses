@@ -169,8 +169,6 @@ export default {
     }
   },
   [EDIT_QUESTION](state, data) {
-    var index = state.questions.findIndex(question => question.id === data.id);
-
     if (state.questionType === 'USER_INPUT') {
       state.answers = [];
     }
@@ -187,7 +185,15 @@ export default {
       state.readingText = '';
     }
 
-    state.questions[index] = data;
+    state.questions = state.questions.map((q) => {
+      if (q.id !== data.id) return q;
+
+      return {
+        ...q,
+        ...data,
+      };
+    });
+
     state.editedQuestion = {};
     state.questionComponent = 'add-question';
   }
