@@ -178,12 +178,20 @@ export default {
     state.questionComponent = 'edit-question';
     state.editedQuestion = Object.assign({}, state.questions.find(question => question.id === questionId));
 
-    state.answers = state.editedQuestion.answers.slice();
     state.questionType = state.editedQuestion.type;
 
     if (state.editedQuestion.type === 'READING_TEXT') {
       state.readingText = state.editedQuestion.readingText;
-      state.readingQuestions = state.editedQuestion.subQuestions;
+      state.readingQuestions = state.editedQuestion.subQuestions.slice();
+
+      for (var i = state.readingQuestions.length - 1; i >= 0; i--) {
+        var answers = state.readingQuestions[i].answers.slice();
+
+        state.answers = state.answers.concat(answers).slice();
+      }
+    }
+    else {
+      state.answers = state.editedQuestion.answers.slice();
     }
   },
   [EDIT_QUESTION](state, data) {
