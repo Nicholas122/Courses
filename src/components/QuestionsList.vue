@@ -3,7 +3,7 @@
     <QuestionItem v-for="(question, i) in questions" 
     :key="question.id"
     :question="question" 
-    :index="(i+1)"></QuestionItem>
+    :index="(i)"></QuestionItem>
   </div>
 </template>
 

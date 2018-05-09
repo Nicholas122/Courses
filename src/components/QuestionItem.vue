@@ -2,7 +2,7 @@
   <div class="card">
     <div class="card-header">
       <div  class="col-md-12">
-        <h3>Question {{ index }}</h3>
+        <h3>Question {{ index + 1}}</h3>
       </div>
     </div>
     <div class="card-body">
@@ -71,12 +71,8 @@ import * as types from '../store/questionTypes';
 
 export default {
   props: {
-    question: {
-      type: Object,
-      required:true,
-
-    }, 
     index: Number, 
+    question: Object
   },
   methods: {
     ...mapActions([

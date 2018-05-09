@@ -46,7 +46,8 @@ export default {
   components: {
     questionHeader,
     questions: QuestionsList,
-    AddQuestion
+    AddQuestion,
+    EditQuestion
   },
   methods: {
     ...mapActions([

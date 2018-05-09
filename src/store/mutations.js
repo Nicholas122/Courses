@@ -158,9 +158,9 @@ export default {
 
   [FETCH_EDIT_QUESTION](state, questionId) {
     state.questionComponent = 'edit-question';
-    state.editedQuestion = state.questions.find(question => question.id === questionId);
+    state.editedQuestion = Object.assign({}, state.questions.find(question => question.id === questionId));
 
-    state.answers = state.editedQuestion.answers;
+    state.answers = state.editedQuestion.answers.slice();
     state.questionType = state.editedQuestion.type;
 
     if (state.editedQuestion.type === 'READING_TEXT') {
