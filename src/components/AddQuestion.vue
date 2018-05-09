@@ -32,7 +32,7 @@
           </div>
           <div v-if="questionType == 'MULTIPLY_CHOISE'">
             <div class="card-body">
-              <Answers :questionId="1"> </Answers>
+              <Answers :questionId="questionId"> </Answers>
             </div>        
           </div>
           <div v-if="questionType == 'READING_TEXT'">
@@ -77,6 +77,7 @@ export default {
 
      ...mapState({
       questionType: state => state.questionType,
+      questionId: state => state.questionId
     }),
    },
    methods: {
@@ -86,6 +87,8 @@ export default {
     create: function() {
       this.$validator.validateAll().then((result) => {
         if (result) {
+          this.question.id = this.questionId;
+          
           this.addQuestion(this.question).then(() => { this.question ={};})
         }
       });

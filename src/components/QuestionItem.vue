@@ -38,9 +38,9 @@
       <span class="question-info">Question {{i + 1}}:</span>
       <div class="card-body">
         <p><span class="question-info">Question text:</span> {{readingQuestion.questionText}}</p>
-        <span class="question-info" v-if="question.answers.length > 0">Answers:</span>
+        <span class="question-info" v-if="readingQuestion.answers.length > 0">Answers:</span>
 
-        <div class="row marg" v-for="(answer) in question.answers" :key="answer.id" >
+        <div class="row marg" v-for="(answer) in readingQuestion.answers" :key="answer.id" >
 
          <div class="col-lg-1 no-padd text-center">
            <span><b>{{ answer.id }})</b></span>

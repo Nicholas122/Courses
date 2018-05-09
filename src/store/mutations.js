@@ -33,21 +33,30 @@ export default {
     state.questions = state.questions.filter(i => i.id !== id);
   },
   [ADD_QUESTION](state, question) {
-    question.id = state.questions.length + 1;
-    question.answers = state.answers.filter(answer => answer.questionId === question.id);;
+    question.id = state.questionId;
     question.type = state.questionType;
 
     if (question.type === 'READING_TEXT') {
+      for (var i = state.readingQuestions.length - 1; i >= 0; i--) {
+        state.readingQuestions[i].answers = state.answers.filter(answer => answer.questionId === state.readingQuestions[i].id);
+      }
       question.subQuestions = state.readingQuestions;
       question.readingText = state.readingText;
 
       state.readingQuestions = [];
       state.readingText = '';
     }
+    else {
+      question.answers = state.answers.filter(answer => answer.questionId === question.id);
+    }
 
     state.answers = [];
 
     state.questions.push(question);
+
+    var maxId = parseInt(Math.max.apply(Math,state.questions.map(function(o){return o.id;}))) || 0;
+
+    state.questionId = maxId + 1;
   },
   [DELETE_ANSWER](state, { uid }) {
     state.answers = state.answers.filter(i => i.uid !== uid);
@@ -66,13 +75,18 @@ export default {
   },
   [DELETE_READING_QUESTION](state, { id }) {
     state.readingQuestions = state.readingQuestions.filter(i => i.id !== id);
+    state.questionId--;
   },
   [ADD_READING_QUESTION](state, question) {
-    question.id = state.readingQuestions.length + 1;
+    question.id = state.questionId;
     question.answers = state.answers.filter(answer => answer.questionId === question.id);
     state.answers = [];
 
     state.readingQuestions.push(question);
+
+    //var maxId = parseInt(Math.max.apply(Math,state.questions.map(function(o){return o.id;}))) || 0;
+
+    state.questionId ++;
   },
   [SET_SECTIONS](state, sections) {
     state.sections = sections;
@@ -150,6 +164,10 @@ export default {
 
   [SET_QUESTION_DATA](state, data) {
     state.questions = data;
+
+    var maxId = parseInt(Math.max.apply(Math,state.questions.map(function(o){return o.id;}))) || 0;
+
+    state.questionId = maxId + 1;
   },
 
   [SET_COURSE_ID](state, courseId) {

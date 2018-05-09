@@ -32,6 +32,7 @@ const state = {
   courseId: '',
   questionComponent: 'add-question',
   editedQuestion: {},
+  questionId: 1
 };
 
 export default new Vuex.Store({
