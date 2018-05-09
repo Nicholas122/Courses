@@ -1,10 +1,16 @@
 <template>
   <div>
     <form>
-      <div class="card-header">
-        <button  class="btn btn-success" @click.prevent="createAnswer">Add answer </button>
- 
-    </div>
+      <div class="answer-header">
+        <div class="row">
+          <div class="col-lg-4">
+            <button  class="btn btn-success" @click.prevent="createAnswer">Add answer </button>
+          </div>
+          <div class="col-lg-8 padd">  
+            <span class="padd"><h6>Please add answer for question</h6></span>
+          </div>
+        </div>  
+      </div>
 
     <div class="card-body">
       <div class="row marg" v-for="(answer, index) in answers" :key="answer.id" >

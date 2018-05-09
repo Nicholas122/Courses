@@ -1,18 +1,24 @@
 <template>
   <div>
     <form>
-      <div class="card-header">
-        <h4>Reading text </h4>
-        <button  class="btn btn-default" v-on:click.prevent="createReadingQuestion">Add Reading Question </button>
+      <div class="answer-header">
+        <div class="row">
+          <div class="col-lg-7">
+            <h4>Reading text </h4>
+          </div>
+          <div class="col-lg-5">
+            <button  class="btn btn-success " v-on:click.prevent="createReadingQuestion">Add Reading Question </button>
+          </div>
+        </div>
       </div>
       <div class="card-body">
         <div class="col-lg-12">
           <textarea placeholder="Please enter the reading text" class="form-control" id="readingText" v-model="readingText"></textarea>
         </div>
-
+      </div>
         <div  v-for="(readingQuestion, index)  in readingQuestions" :key="readingQuestion.id" >
           
-           <div class="row marg yes-marg">
+           <div class="row marg yes-marg answer-header">
               <div class="col-lg-11 no-padd">
                 <h4>
                   Question - {{ index + 1 }}
@@ -30,7 +36,7 @@
         </div>
       </div>
 
-    </div>
+    
   </form>
 </div>
 </template>

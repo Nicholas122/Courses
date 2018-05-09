@@ -24,21 +24,21 @@
           <QuestionTypeSelector />
           <label for=""></label>
           <div v-if="questionType == 'USER_INPUT'">
-            <div class="card">
-              <div class="card-body">
+            <div class="answer-header">
+
                 <h4>User must answer of this question </h4>
-              </div>
+
             </div>
           </div>
           <div v-if="questionType == 'MULTIPLY_CHOISE'">
-            <div class="card-body">
+
               <Answers :questionId="questionId"> </Answers>
-            </div>        
+        
           </div>
           <div v-if="questionType == 'READING_TEXT'">
-            <div class="card-body">
+
               <readingText></readingText>
-            </div>
+
           </div>
 
           <input :disabled="errors.any()" type="submit" class="btn btn-success marg"  value="Add Question"> 
