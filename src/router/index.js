@@ -9,12 +9,12 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/test/new/:courseId',
+      path: '/test-new/:courseId',
       component: CreateTest,
       props: true
     },
     {
-      path: '/test/:testId',
+      path: '/test-edit/:testId',
       component: EditTests,
       props: true
     }
