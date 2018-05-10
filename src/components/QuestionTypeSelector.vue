@@ -1,13 +1,18 @@
 <template>
-  <div class="form-group">
-    <label><b>Choose question type:</b></label>
-    <select id="question-type" class="question-type-select form-control" v-model="questionType">
-      <option
-      v-bind:value="key"
-      v-bind:key="key"
-      v-for="(type, key) in types"
-      >{{type}}</option>
-    </select>
+  <div class="row marg zero-marg">
+
+    <div class="col-lg-6 no-padd">
+      <label><b>Choose question type:</b></label>
+    </div>
+    <div class="col-lg-6 no-padd">  
+      <select id="question-type" class="question-type-select form-control" v-model="questionType">
+        <option class="f-text"
+        v-bind:value="key"
+        v-bind:key="key"
+        v-for="(type, key) in types"
+        ><b  >{{type}}</b></option>
+      </select>
+    </div>  
   </div>
 </template>
 
@@ -37,10 +42,4 @@ export default {
 };
 </script>
 
-<style>
-#question-type {
-  width: 30%;
-  display: inline-block;
-  height: 34px;
-}
-</style>
+

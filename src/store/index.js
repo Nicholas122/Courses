@@ -25,7 +25,32 @@ const state = {
   },
   questionType: Object.keys(types)[0],
   questions: [],
-  answers: [],
+  answers: [ 
+    { 
+      id:'1',  
+      text:'',
+      correct:true,
+      
+    },
+    { 
+      id:'2',  
+      text:'',
+      correct:'',
+      
+    },
+    { 
+      id:'3',  
+      text:'',
+      correct:'',
+      
+    },
+    { 
+      id:'4',  
+      text:'',
+      correct:'',
+      
+    }
+],
   readingQuestions: [],
   readingText: '',
   sections: [],

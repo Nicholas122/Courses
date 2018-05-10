@@ -7,9 +7,9 @@
     </div>
     <div class="card-body">
       <div class="col-md-12" v-if="question.type != 'READING_TEXT'">
-        <p><span class="question-info">Question text:</span> {{question.text}}</p>
         <p><span class="question-info">Question type:</span> {{ getConst(question.type) }}</p>
         <p><span class="question-info">Weight:</span> {{ question.weight }}</p>
+        <p><span class="question-info">Question text:</span> {{question.text}}</p>
         <span class="question-info" v-if="question.answers.length > 0">Answers:</span>
         <div class="row marg" v-for="(answer) in question.answers" :key="answer.id" >
 
@@ -59,7 +59,7 @@
 
  <div class="card-body">
    <button class="btn btn-secondary edit-btn" @click.prevent="editQuestions"> Edit </button>
-   <button class="btn btn-danger edit-btn" @click.prevent="removeQuestion"> Delete </button>
+   <button class="btn btn-danger edit-btn"  @click.prevent="removeQuestion"> Delete </button>
  </div>
 </div> 
  
@@ -87,7 +87,8 @@ export default {
     },
     editQuestions()
     {
-      this.editQuestion(this.question.id)
+      this.editQuestion(this.question.id);
+      window.scrollTo(1000, 0);
     }
   },
 

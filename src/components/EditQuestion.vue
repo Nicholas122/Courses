@@ -41,7 +41,8 @@
             </div>
           </div>
 
-          <input :disabled="errors.any()" type="submit" class="btn btn-success marg"  value="Save Question"> 
+          <button :disabled="errors.any()" type="submit" class="btn btn-success marg"  >Save Question</button>
+          <button  type="button" class="btn btn-primary" @click.prevent="emptyChanges">Cancel</button>  
         </form>
       </div>      
     </div>
@@ -84,6 +85,9 @@ export default {
         }
       });
     },
+    emptyChanges() {
+      this.$store.state.questions = {};
+    }
 
   },
   components: {

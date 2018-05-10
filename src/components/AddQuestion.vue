@@ -6,31 +6,37 @@
       </div>
       <div class="card-body">
         <form @submit.prevent="create">
-          <div class="form-group right">
-            <label><b>Choose weight:</b></label> 
-            <select  name="weight" v-validate="'required'" :class="{ 'form-control': true, 'has-error': errors.has('weight') }" id="question-weigth"  v-model="question.weight" >
-              <option  value="1">1</option>
-              <option  value="2">2</option>
-              <option  value="3">3</option>
-              <option  value="4">4</option>
-              <option  value="5">5</option>
-            </select>
-            <span v-show="errors.has('weight')" class="help error-message">This value should not be blank.</span>
+          <!-- Selected question type component  -->
+            <QuestionTypeSelector />
+
+          <div class="row marg zero-marg">
+            <div class="col-lg-6 no-padd">
+              <label><b>Choose weight:</b></label> 
+            </div>
+            <div class="col-lg-6 no-padd">
+              <select  name="weight" v-validate="'required'" :class="{ 'form-control': true, 'has-error': errors.has('weight') }" id="question-weigth"  v-model="question.weight" >
+                <option class="f-text" value="1">1</option>
+                <option class="f-text" value="2">2</option>
+                <option class="f-text" value="3">3</option>
+                <option class="f-text" value="4">4</option>
+                <option class="f-text" value="5">5</option>
+              </select>
+            </div>
+            
+            <span v-show="errors.has('weight')" class="help error-message">This value should not be empty.</span>
           </div>
           <div class="form-group">
             <textarea name="question" v-validate="'required'" :class="{ 'form-control': true, 'has-error': errors.has('question') }" type="text" id="question-text" rows="5"  placeholder="Please enter text for question" v-model.trim="question.text" ></textarea>
             <span v-show="errors.has('question')" class="help error-message">This value should not be blank.</span>
           </div>
-          <QuestionTypeSelector />
-          <label for=""></label>
-          <div v-if="questionType == 'USER_INPUT'">
-            <div class="answer-header">
+         <div v-if="questionType == 'USER_INPUT'">
+            <div class="answer-header marg">
 
-                <h4>User must answer of this question </h4>
+                <span>User will be asked to manually enter an answer into a text box</span>
 
             </div>
           </div>
-          <div v-if="questionType == 'MULTIPLY_CHOISE'">
+          <div v-if="questionType == 'MULTIPLE_CHOICE'">
 
               <Answers :questionId="questionId"> </Answers>
         
@@ -41,7 +47,8 @@
 
           </div>
 
-          <input :disabled="errors.any()" type="submit" class="btn btn-success marg"  value="Add Question"> 
+          <button :disabled="errors.any()" type="submit" class="btn btn-success">Save Question</button> 
+          <button  type="button" class="btn btn-primary" @click.prevent="emptyChanges">Cancel</button> 
         </form>
       </div>      
     </div>
@@ -93,6 +100,9 @@ export default {
         }
       });
     },
+    emptyChanges() {
+      this.$store.state.questions = {};
+    }
 
   },
   components: {
@@ -104,6 +114,15 @@ export default {
 </script>
 
 <style>
+.answer-header {
+    padding: .75rem 1.25rem;
+    margin-bottom: 10px;
+    background-color: rgba(0,0,0,.03);
+    border: 1px solid rgba(0,0,0,.125);
+}
+.f-text {
+  font-size:16px;
+}
 .help {
   background: white;
 }
@@ -119,10 +138,7 @@ export default {
 .right {
   float: right;
 }
-.marg {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
+
 .padd {
   padding-top: 5px;
 }
@@ -133,7 +149,21 @@ export default {
   margin-left: 15px;
   margin-right: 15px;
 }
+.marg {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 
+.zero-marg {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.no-marg {
+  margin:0px
+}
+.no-border-bottom {
+  border-bottom:none;
+}
 #question-weigth {
   height: 34px;
 }

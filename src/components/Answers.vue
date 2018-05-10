@@ -2,15 +2,8 @@
   <div>
     <form>
       <div class="answer-header">
-        <div class="row">
-          <div class="col-lg-4">
-            <button  class="btn btn-success" @click.prevent="createAnswer">Add answer </button>
-          </div>
-          <div class="col-lg-8 padd">  
-            <span class="padd"><h6>Please add answer for question</h6></span>
-          </div>
-        </div>  
-      </div>
+         
+      
 
     <div class="card-body">
       <div class="row marg" v-for="(answer, index) in answers" :key="answer.id" >
@@ -25,10 +18,17 @@
          <input type="checkbox"  :id="answer.id"  v-model="answer.correct">
        </div>
        <div class="col-lg-1 no-padd text-center">
-           <span  style="color:#dc3545;cursor:pointer" @click.prevent="removeAnswer(answer.uid)"> <b>X</b> </span>
-         </div>
+          <span  style="color:#dc3545;cursor:pointer" @click.prevent="removeAnswer(answer.uid)"> <b>X</b> </span>
+        </div>
      </div>
+     <div class="row">
+          <div class="col-lg-4">
+            <button  class="btn btn-success" @click.prevent="createAnswer">Add answer </button>
+          </div>
+         
+        </div> 
    </div> 
+   </div>
    <!-- <button  class="btn btn-success" @click="addAnswers">Add answer </button> -->
  </form>     
 </div>
@@ -43,6 +43,7 @@ export default {
   computed:{
     answers() {
       return this.$store.getters.getAnswersByQuestionId(this.questionId);
+      //return this.$store.state.answers
     } 
   },
   methods: {
