@@ -70,7 +70,7 @@ export default {
   data() {
     return {
       question: {
-        weight: 3,
+        weight: 1,
       },
       
     };
@@ -91,6 +91,7 @@ export default {
    methods: {
     ...mapActions([
       'addQuestion',
+      'clearData'
       ]),
     create: function() {
       this.$validator.validateAll().then((result) => {
@@ -102,7 +103,9 @@ export default {
       });
     },
     emptyChanges() {
-      this.$store.state.questions = {};
+      this.question = {weight: 1};
+
+      this.clearData();
     }
 
   },

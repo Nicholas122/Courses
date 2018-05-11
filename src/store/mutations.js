@@ -22,7 +22,8 @@ import {
   SET_QUESTION_DATA,
   SET_COURSE_ID,
   EDIT_QUESTION,
-  FETCH_EDIT_QUESTION
+  FETCH_EDIT_QUESTION,
+  CLEAR_DATA
 } from './mutationTypes';
 
 export default {
@@ -60,7 +61,7 @@ export default {
   },
   [DELETE_ANSWER](state, { uid }) {
     if (uid > 4) {
-    state.answers = state.answers.filter(i => i.uid !== uid);
+      state.answers = state.answers.filter(i => i.uid !== uid);
     }
   },
   [ADD_ANSWER](state, answer) {
@@ -224,6 +225,20 @@ export default {
 
     state.editedQuestion = {};
     state.questionComponent = 'add-question';
+  },
+  [CLEAR_DATA](state) {
+    state.answers = [];
+    state.questionType = 'USER_INPUT';
+    state.readingText = '';
+    state.readingQuestions = [];
+    state.editedQuestion = {};
+    state.questionComponent = 'add-question';
+    
+    var maxId = parseInt(Math.max.apply(Math,state.questions.map(function(o){return o.id;}))) || 0;
+
+    state.questionId = maxId + 1;
+
+
   }
 
 };

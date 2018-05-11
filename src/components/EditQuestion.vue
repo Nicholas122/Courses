@@ -77,6 +77,7 @@ export default {
    methods: {
     ...mapActions([
       'saveQuestion',
+      'clearData'
       ]),
     save: function() {
       this.$validator.validateAll().then((result) => {
@@ -86,7 +87,7 @@ export default {
       });
     },
     emptyChanges() {
-      this.$store.state.questions = {};
+      this.clearData();
     }
 
   },
