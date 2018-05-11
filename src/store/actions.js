@@ -22,7 +22,8 @@ import {
   SET_QUESTION_DATA,
   SET_COURSE_ID,
   EDIT_QUESTION,
-  FETCH_EDIT_QUESTION
+  FETCH_EDIT_QUESTION,
+  CLEAR_DATA
 } from './mutationTypes';
 import * as api from '../helpers/api';
 
@@ -115,4 +116,8 @@ export const editQuestion = ({commit}, questionId) => {
 
 export const saveQuestion = ({commit}, data) => {
   commit(EDIT_QUESTION, data);
+}
+
+export const clearData = ({commit}) => {
+  commit(CLEAR_DATA);
 }

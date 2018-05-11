@@ -34,3 +34,5 @@ export const MERGE_TEST_DATA = 'MERGE_TEST_DATA';
 export const EDIT_QUESTION = 'EDIT_QUESTION';
 
 export const FETCH_EDIT_QUESTION = 'FETCH_EDIT_QUESTION';
+
+export const CLEAR_DATA = 'CLEAR_DATA';
