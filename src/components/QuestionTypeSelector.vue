@@ -6,7 +6,7 @@
     </div>
     <div class="col-lg-6 no-padd">  
       <select id="question-type" class="question-type-select form-control" v-model="questionType">
-        <option :selected="{ 'true': type == 'USER_INPUT' }" class="f-text"
+        <option class="f-text"
         v-bind:value="type"
         v-bind:key="index"
         v-for="(index, type) in types"
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapGetters } from 'vuex';
 import * as types from '../store/questionTypes';
 
 export default {
@@ -30,9 +30,12 @@ export default {
     ...mapActions(['setQuestionType']),
   },
   computed: {
+    ...mapGetters([
+      'getQuestionType',
+      ]),
     questionType: {
       get() {
-        return this.$store.questionType;
+        return this.getQuestionType;
       },
       set(value) {
         return this.setQuestionType(value);

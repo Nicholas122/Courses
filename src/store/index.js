@@ -23,7 +23,7 @@ const state = {
       retakeTimeout: ''
     }
   },
-  questionType: Object.keys(types)[0],
+  questionType: 'USER_INPUT',
   questions: [],
   answers: [],
   readingQuestions: [],
@@ -42,6 +42,9 @@ export default new Vuex.Store({
   getters: {
     getReadingText: state => {
       return state.readingText
+    },
+    getQuestionType: state => {
+      return state.questionType;
     },
     getAnswersByQuestionId: (state) => (id) => {
       var answers =  state.answers.filter(answer => answer.questionId === id);
