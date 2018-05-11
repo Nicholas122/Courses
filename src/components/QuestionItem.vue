@@ -88,7 +88,9 @@ export default {
     editQuestions()
     {
       this.editQuestion(this.question.id);
-      window.scrollTo(1000, 0);
+      window.scroll({
+        top:0, left:0, behavior: 'smooth'
+      });
     }
   },
 

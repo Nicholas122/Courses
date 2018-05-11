@@ -23,8 +23,8 @@
               <Answers :questionId="readingQuestion.id"></Answers>
             </div>
         </div>
-      <div class="col-lg-5 marg zero-marg">
-        <button  class="btn btn-success " v-on:click.prevent="createReadingQuestion">Add Reading Question </button>
+        <div class="row marg zero-marg">
+          <button  class="btn btn-success " v-on:click.prevent="createReadingQuestion">Add Reading Question </button>
       </div>
     
   </form>

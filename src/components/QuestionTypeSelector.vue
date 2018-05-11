@@ -6,11 +6,11 @@
     </div>
     <div class="col-lg-6 no-padd">  
       <select id="question-type" class="question-type-select form-control" v-model="questionType">
-        <option class="f-text"
-        v-bind:value="key"
-        v-bind:key="key"
-        v-for="(type, key) in types"
-        ><b  >{{type}}</b></option>
+        <option :selected="{ 'true': type == 'USER_INPUT' }" class="f-text"
+        v-bind:value="type"
+        v-bind:key="index"
+        v-for="(index, type) in types"
+        ><b>{{type}}</b></option>
       </select>
     </div>  
   </div>
@@ -40,6 +40,8 @@ export default {
     },
   },
 };
+
+
 </script>
 
 

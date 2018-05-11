@@ -25,32 +25,7 @@ const state = {
   },
   questionType: Object.keys(types)[0],
   questions: [],
-  answers: [ 
-    { 
-      id:'1',  
-      text:'',
-      correct:true,
-      
-    },
-    { 
-      id:'2',  
-      text:'',
-      correct:'',
-      
-    },
-    { 
-      id:'3',  
-      text:'',
-      correct:'',
-      
-    },
-    { 
-      id:'4',  
-      text:'',
-      correct:'',
-      
-    }
-],
+  answers: [],
   readingQuestions: [],
   readingText: '',
   sections: [],
@@ -69,6 +44,41 @@ export default new Vuex.Store({
       return state.readingText
     },
     getAnswersByQuestionId: (state) => (id) => {
+      var answers =  state.answers.filter(answer => answer.questionId === id);
+
+      if (answers.length === 0) {
+        state.answers = [
+          { 
+            id:'1',  
+            text:'',
+            questionId: id,
+            correct: true,
+            
+          },
+          { 
+            id:'2',  
+            text:'',
+            questionId: id,
+            correct:'',
+            
+          },
+          { 
+            id:'3',  
+            text:'',
+            questionId: id,
+            correct:'',
+            
+          },
+          { 
+            id:'4',  
+            text:'',
+            questionId: id,
+            correct:'',
+            
+          }
+        ]
+      }
+
       return state.answers.filter(answer => answer.questionId === id);
     },
     getTestTitle: state => {

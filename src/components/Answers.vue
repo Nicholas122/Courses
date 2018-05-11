@@ -42,7 +42,7 @@ export default {
   props: ['questionId'],
   computed:{
     answers() {
-      return this.$store.getters.getAnswersByQuestionId(this.questionId);
+     return this.$store.getters.getAnswersByQuestionId(this.questionId);
       //return this.$store.state.answers
     } 
   },
