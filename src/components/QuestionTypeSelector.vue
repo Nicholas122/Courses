@@ -14,7 +14,6 @@
         v-bind:value="key"
         v-bind:key="key"
         v-for="(type, key) in types" ><b>{{type}}</b></option>
-       
       </select>
     </div>  
   </div>

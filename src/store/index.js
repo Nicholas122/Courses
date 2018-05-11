@@ -23,7 +23,7 @@ const state = {
       retakeTimeout: ''
     }
   },
-  questionType: Object.keys(types)[0],
+  questionType: 'USER_INPUT',
   questions: [],
   answers: [],
   readingQuestions: [],
