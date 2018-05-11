@@ -14,7 +14,7 @@
               <label><b>Choose weight:</b></label> 
             </div>
             <div class="col-xs-6 col-sm-6 col-md-6 no-padd">
-              <select name="weight" v-validate="'required'" :class="{ 'form-control': true, 'has-error': errors.has('weight') }" id="question-weigth"  v-model="question.weight" >
+              <select id="question-weigth" class="form-control" v-model="question.weight" >
                 <option  class="f-text" value="1">1</option>
                 <option class="f-text" value="2">2</option>
                 <option class="f-text" value="3">3</option>
@@ -23,7 +23,7 @@
               </select>
             </div>
             
-            <span v-show="errors.has('weight')" class="help error-message">This value should not be empty.</span>
+           
           </div>
           <div class="form-group">
             <textarea name="question" v-validate="'required'" :class="{ 'form-control': true, 'has-error': errors.has('question') }" type="text" id="question-text" rows="5"  placeholder="Please enter text for question" v-model.trim="question.text" ></textarea>
@@ -37,8 +37,8 @@
             </div>
           </div>
           <div v-if="questionType == 'MULTIPLE_CHOICE'">
-
-              <Answers :questionId="questionId"> </Answers>
+              
+              <Answers :questionId="questionId">  </Answers> 
               
           </div>
           <div v-if="questionType == 'READING_TEXT'">
@@ -70,7 +70,7 @@ export default {
   data() {
     return {
       question: {
-        weight: 3,
+        weight: 1,
       },
       
     };
