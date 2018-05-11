@@ -16,7 +16,8 @@
                 <span  style="color:#dc3545;cursor:pointer" @click.prevent="removereadingQuestion(readingQuestion.id)"><b>X</b> </span>
               </div>
               <div class="col-xs-12 col-sm-12 col-md-12 ">
-                <textarea placeholder="Please enter the question" class="form-control " rows="6" :id="readingQuestion.id" v-model="readingQuestion.questionText"></textarea>
+                <textarea placeholder="Please enter the question" class="form-control " rows="6" v-model="readingQuestion.questionText" :name="readingQuestion.id" v-validate="'required'" :class="{'has-error': errors.has(readingQuestion.id) }"></textarea>
+                <span v-show="errors.has(readingQuestion.id)" class="help error-message">This value should not be blank.</span>
               </div>
             </div>
             <div class="row zero-marg">
@@ -38,7 +39,9 @@ import { mapActions } from 'vuex';
 import { mapState } from 'vuex'
 import { mapGetters } from 'vuex'
 
+
 export default {
+  inject: ['$validator'],
   computed: { 
     ...mapGetters([
       'getReadingText',
@@ -52,6 +55,9 @@ export default {
       }
     },
     ...mapState(['readingQuestions'])
+  },
+  mounted () {
+      this.$emit('validateAnswers');
   },
   methods: {
     ...mapActions([
@@ -70,6 +76,10 @@ export default {
 
     removereadingQuestion(id) {
       this.deleteReadingQuestion(id);
+    },
+
+    validateAnswers() {
+      this.$validator.validateAll();
     }
   },
   components:{
