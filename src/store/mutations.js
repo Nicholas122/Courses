@@ -59,9 +59,8 @@ export default {
     state.questionId = maxId + 1;
   },
   [DELETE_ANSWER](state, { uid }) {
-    if (uid > 4) {
+    
     state.answers = state.answers.filter(i => i.uid !== uid);
-    }
   },
   [ADD_ANSWER](state, answer) {
     var maxId = parseInt(Math.max.apply(Math,state.answers.filter(item => item.questionId === answer.questionId).map(function(o){return o.id;}))) || 0;

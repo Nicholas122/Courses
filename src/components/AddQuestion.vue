@@ -10,12 +10,12 @@
             <QuestionTypeSelector />
 
           <div class="row marg zero-marg">
-            <div class="col-lg-6 no-padd">
+            <div class="col-xs-6 col-sm-6 col-md-6 no-padd">
               <label><b>Choose weight:</b></label> 
             </div>
-            <div class="col-lg-6 no-padd">
-              <select  name="weight" v-validate="'required'" :class="{ 'form-control': true, 'has-error': errors.has('weight') }" id="question-weigth"  v-model="question.weight" >
-                <option class="f-text" value="1">1</option>
+            <div class="col-xs-6 col-sm-6 col-md-6 no-padd">
+              <select name="weight" v-validate="'required'" :class="{ 'form-control': true, 'has-error': errors.has('weight') }" id="question-weigth"  v-model="question.weight" >
+                <option  class="f-text" value="1">1</option>
                 <option class="f-text" value="2">2</option>
                 <option class="f-text" value="3">3</option>
                 <option class="f-text" value="4">4</option>

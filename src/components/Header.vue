@@ -5,7 +5,7 @@
       <div class="testBorder">
         <div class="testLimits">
           <div class="row" >
-            <div class="col-md-4" >
+            <div class="col-sm-4 col-md-4" >
               <label for="lTitle">Title</label>
               <input id="lTitle" name="lTitle" type="text" maxlength="300" placeholder="Max length 300" v-model="title"
               :class="['form-control', {
@@ -17,7 +17,7 @@
               </span>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-sm-4 col-md-4">
               <label for="lDescription">Description</label>
               <input id="lDescription" name="lDescription" type="text" maxlength="500" placeholder="Max length 500" v-model="description"
               :class="['form-control', {
@@ -29,7 +29,7 @@
               </span>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-sm-4  col-md-4">
               <label for="CourseSection">Select Section</label>                
               <select name="CourseSection" id="CourseSection" v-model="section"
               :class="['form-control', {
@@ -42,7 +42,7 @@
               {{ requestErrors.section }}
             </span>
           </div>
-          <div class="col-md-4">
+          <div class="col-sm-4 col-md-4">
             <!--Time Limits-->
             <label for="lTimeLimits" class="control-label">Time limit</label>
             <input id="lTimeLimits" name="lTimeLimits" type="number" min="0" maxlength="10" v-model="timeLimit"
@@ -55,7 +55,7 @@
             </span>
             <label class="timePHolders">* sets the test time limit in minutes</label>
           </div>
-          <div class="col-md-4">
+          <div class="col-sm-4 col-md-4">
             <label for=": {
 
           }lTestRate" class="control-label">Pass/fail score</label>
@@ -69,7 +69,7 @@
           </span>
           <label class="timePHolders">* passing score in percent</label>
         </div>
-        <div class="col-md-4">
+        <div class="col-sm-4 col-md-4">
           <label class="control-label">Retake timeout</label>
           <input id="lRetakeTimeout" name="lRetakeTimeout" type="number" min="1" max="365" v-model="retakeTimeout"
           :class="['form-control', 'timeLimits', {

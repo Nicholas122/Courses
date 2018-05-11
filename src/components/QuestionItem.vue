@@ -1,25 +1,25 @@
 <template>
   <div class="card">
     <div class="card-header">
-      <div  class="col-md-12">
+      <div  class="col-xs-12 col-sm-12 col-md-12">
         <h3>Question {{ index + 1}}</h3>
       </div>
     </div>
     <div class="card-body">
-      <div class="col-md-12" v-if="question.type != 'READING_TEXT'">
+      <div class="col-xs-12 col-sm-12  col-md-12" v-if="question.type != 'READING_TEXT'">
         <p><span class="question-info">Question type:</span> {{ getConst(question.type) }}</p>
         <p><span class="question-info">Weight:</span> {{ question.weight }}</p>
         <p><span class="question-info">Question text:</span> {{question.text}}</p>
         <span class="question-info" v-if="question.answers.length > 0">Answers:</span>
         <div class="row marg" v-for="(answer) in question.answers" :key="answer.id" >
 
-         <div class="col-lg-1 no-padd text-center">
+         <div class="col-xs-1 col-sm-1  col-md-1 no-padd text-center">
            <span><b>{{ answer.id }})</b></span>
          </div>
-         <div class="col-lg-10">
+         <div class="col-xs-1 col-sm-10  col-md-10">
            <input type="text" placeholder="Please enter the answer" class="form-control" v-model="answer.text" disabled="">
          </div>
-         <div class="col-lg-1">
+         <div class="col-xs-1 col-sm-1  col-md-1">
            <input type="checkbox"  :id="answer.id"  v-model="answer.correct" disabled="">
          </div>
 
@@ -42,13 +42,13 @@
 
         <div class="row marg" v-for="(answer) in readingQuestion.answers" :key="answer.id" >
 
-         <div class="col-lg-1 no-padd text-center">
+         <div class="col-xs-1 col-sm-1 col-md-1 no-padd text-center">
            <span><b>{{ answer.id }})</b></span>
          </div>
-         <div class="col-lg-10">
+         <div class="col-xs-10 col-sm-10 col-md-10">
            <input type="text" placeholder="Please enter the answer" class="form-control" v-model="answer.text" disabled="">
          </div>
-         <div class="col-lg-1">
+         <div class="col-xs-1 col-sm-1 col-md-1">
            <input type="checkbox"  :id="answer.id"  v-model="answer.correct" disabled="">
          </div>
        </div>
