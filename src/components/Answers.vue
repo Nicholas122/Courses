@@ -12,7 +12,7 @@
          <input type="text" placeholder="Please enter the answer" class="form-control" v-model="answer.text"  name="answers" v-validate="'required'" :class="{'has-error': errors.has('answers') }" >
           <span v-show="errors.has('answers')" class="help error-message">This value should not be blank.</span>
        </div>
-       <div>
+       <div class="col-xs-1 col-sm-1 col-md-1 no-padd text-center">
          <input type="checkbox"  :id="answer.id"  v-model="answer.correct">
        </div>
        <div class="col-xs-1 col-sm-1 col-md-1 no-padd text-center">
@@ -44,6 +44,7 @@ export default {
     answers() {
      return this.$store.getters.getAnswersByQuestionId(this.questionId);
       //return this.$store.state.answers
+      
     } 
   },
   methods: {

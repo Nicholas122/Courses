@@ -38,7 +38,7 @@
           </div>
           <div v-if="questionType == 'MULTIPLE_CHOICE'">
               
-              <Answers :questionId="questionId">  </Answers> 
+              <Answers :questionId="questionId" >  </Answers> 
               
           </div>
           <div v-if="questionType == 'READING_TEXT'">
@@ -93,6 +93,7 @@ export default {
       'addQuestion',
       'clearData'
       ]),
+
     create: function() {
       this.$validator.validateAll().then((result) => {
         if (result) {
