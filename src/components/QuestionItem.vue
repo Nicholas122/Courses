@@ -16,7 +16,7 @@
          <div class="col-xs-1 col-sm-1  col-md-1 no-padd text-center">
            <span><b>{{ answer.id }})</b></span>
          </div>
-         <div class="col-xs-1 col-sm-10  col-md-10">
+         <div class="col-xs-10 col-sm-10  col-md-10">
            <input type="text" placeholder="Please enter the answer" class="form-control" v-model="answer.text" disabled="">
          </div>
          <div class="col-xs-1 col-sm-1  col-md-1">

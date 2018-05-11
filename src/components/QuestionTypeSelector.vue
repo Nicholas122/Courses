@@ -1,4 +1,4 @@
-<template>
+, mapGetters<template>
   <div class="row marg zero-marg">
 
     <div class="col-xs-6 col-sm-6 col-md-6 no-padd">
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapGetters } from 'vuex';
 import * as types from '../store/questionTypes';
 
 export default {
@@ -35,9 +35,12 @@ export default {
    
   },
   computed: {
+   ...mapGetters ([
+        'getQuestionType'
+      ]),
     questionType: {
       get() {
-        return this.$store.questionType;
+        return this.getQuestionType;
       },
       set(value) {
         return this.setQuestionType(value);

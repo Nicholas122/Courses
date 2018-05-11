@@ -43,6 +43,9 @@ export default new Vuex.Store({
     getReadingText: state => {
       return state.readingText
     },
+    getQuestionType: state => {
+      return state.questionType;
+    },
     getAnswersByQuestionId: (state) => (id) => {
       var answers =  state.answers.filter(answer => answer.questionId === id);
 
@@ -53,28 +56,28 @@ export default new Vuex.Store({
             text:'',
             questionId: id,
             correct: true,
-            
+            uid: 1
           },
           { 
             id:'2',  
             text:'',
             questionId: id,
             correct:'',
-            
+            uid: 2
           },
           { 
             id:'3',  
             text:'',
             questionId: id,
             correct:'',
-            
+            uid: 3
           },
           { 
             id:'4',  
             text:'',
             questionId: id,
             correct:'',
-            
+            uid: 4
           }
         ]
       }

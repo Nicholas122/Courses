@@ -39,7 +39,7 @@
           <div v-if="questionType == 'MULTIPLE_CHOICE'">
 
               <Answers :questionId="questionId"> </Answers>
-        
+              
           </div>
           <div v-if="questionType == 'READING_TEXT'">
 
@@ -70,6 +70,7 @@ export default {
   data() {
     return {
       question: {
+        weight: 1
       },
       
     };
