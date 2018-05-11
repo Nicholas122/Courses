@@ -57,9 +57,12 @@ export default {
         text:'',
         correct:'',
         questionId: this.questionId
-      };
-
-      this.addAnswer(answer);
+      }
+      this.$validator.validateAll().then((result) => {
+        if (result) {
+          this.addAnswer(answer);
+        }
+      })
     },
     removeAnswer(uid) {
       this.deleteAnswer(uid);

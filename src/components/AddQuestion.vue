@@ -97,7 +97,6 @@ export default {
       this.$validator.validateAll().then((result) => {
         if (result) {
           this.question.id = this.questionId;
-          
           this.addQuestion(this.question).then(() => { this.question ={};})
         }
       });

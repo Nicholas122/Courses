@@ -42,7 +42,7 @@
               {{ requestErrors.section }}
             </span>
           </div>
-          <div class="col-sm-4 col-md-4">
+          <div class="col-sm-4 col-md-4 marg">
             <!--Time Limits-->
             <label for="lTimeLimits" class="control-label">Time limit</label>
             <input id="lTimeLimits" name="lTimeLimits" type="number" min="0" maxlength="10" v-model="timeLimit"
@@ -53,9 +53,9 @@
             <span class="error-message" v-if="requestErrors.timeLimit">
               {{ requestErrors.timeLimit }}
             </span>
-            <label class="timePHolders">* sets the test time limit in minutes</label>
+            <span class="timePHolders">* sets the test time limit in minutes</span>
           </div>
-          <div class="col-sm-4 col-md-4">
+          <div class="col-sm-4 col-md-4 marg">
             <label for=": {
 
           }lTestRate" class="control-label">Pass/fail score</label>
@@ -67,9 +67,9 @@
           <span class="error-message" v-if="requestErrors.passingScorePercent">
             {{ requestErrors.passingScorePercent }}
           </span>
-          <label class="timePHolders">* passing score in percent</label>
+          <span class="timePHolders">* passing score in percent</span>
         </div>
-        <div class="col-sm-4 col-md-4">
+        <div class="col-sm-4 col-md-4 marg">
           <label class="control-label">Retake timeout</label>
           <input id="lRetakeTimeout" name="lRetakeTimeout" type="number" min="1" max="365" v-model="retakeTimeout"
           :class="['form-control', 'timeLimits', {
@@ -79,7 +79,7 @@
           <span class="error-message" v-if="requestErrors.retakeTimeout">
             {{ requestErrors.retakeTimeout }}
           </span>
-          <label class="timePHolders">* period of time after which a user can retake the test in days</label>
+          <span class="timePHolders">* period of time after which a user can retake the test in days</span>
         </div>
       </div>
 
