@@ -9,8 +9,8 @@
          <span><b>{{ index + 1}})</b></span>
        </div>
        <div class="col-xs-9 col-sm-8 col-md-9">
-         <input type="text" placeholder="Please enter the answer" class="form-control" v-model="answer.text"  name="answers" v-validate="'required'" :class="{'has-error': errors.has('answers') }" >
-          <span v-show="errors.has('answers')" class="help error-message">This value should not be blank.</span>
+         <input type="text" placeholder="Please enter the answer" class="form-control" v-model="answer.text"  :name="index" v-validate="'required'" :class="{'has-error': errors.has(index) }" >
+          <span v-show="errors.has(index)" class="help error-message">This value should not be blank.</span>
        </div>
        <div>
          <input type="checkbox"  :id="answer.id"  v-model="answer.correct">
@@ -40,11 +40,15 @@ import { mapActions, mapState } from 'vuex';
 
 export default {
   props: ['questionId'],
+  inject: ['$validator'],
   computed:{
     answers() {
      return this.$store.getters.getAnswersByQuestionId(this.questionId);
       //return this.$store.state.answers
     } 
+  },
+  mounted () {
+      this.$emit('validateAnswers');
   },
   methods: {
     ...mapActions([
@@ -58,15 +62,14 @@ export default {
         correct:'',
         questionId: this.questionId
       }
-      this.$validator.validateAll().then((result) => {
-        if (result) {
-          this.addAnswer(answer);
-        }
-      })
+      this.addAnswer(answer);
     },
     removeAnswer(uid) {
       this.deleteAnswer(uid);
     },
+    validateAnswers() {
+      this.$validator.validateAll();
+    }
    
   }
 
