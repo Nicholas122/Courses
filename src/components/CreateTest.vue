@@ -5,12 +5,12 @@
     </div>
 
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-sm-6 col-md-6">
         <questions></questions>
 
         <button v-if="this.questions" class="btn btn-success create-test-btn"  @click.prevent="createTest">Create test</button>
       </div>
-      <div class="col-md-6">
+      <div class="col-sm-6 col-md-6">
         <component :is="questionComponent"></component>
       </div>
     </div>

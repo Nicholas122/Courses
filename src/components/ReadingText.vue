@@ -7,15 +7,15 @@
         
         <div  v-for="(readingQuestion, index)  in readingQuestions" :key="readingQuestion.id" >
             <div class="row zero-marg answer-header no-marg no-border-bottom" >
-              <div class="col-lg-11 marg">
+              <div class="col-xs-11 col-sm-11 col-md-11 marg">
                 <h4>
                   Question - {{ index + 1 }}
                 </h4>
               </div>
-              <div class="col-lg-1 marg text-center">
+              <div class="col-xs-1 col-sm-1  col-md-1 marg text-center">
                 <span  style="color:#dc3545;cursor:pointer" @click.prevent="removereadingQuestion(readingQuestion.id)"><b>X</b> </span>
               </div>
-              <div class="col-lg-12 ">
+              <div class="col-xs-12 col-sm-12 col-md-12 ">
                 <textarea placeholder="Please enter the question" class="form-control " rows="6" :id="readingQuestion.id" v-model="readingQuestion.questionText"></textarea>
               </div>
             </div>

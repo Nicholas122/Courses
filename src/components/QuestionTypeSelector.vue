@@ -1,16 +1,19 @@
 <template>
   <div class="row marg zero-marg">
 
-    <div class="col-lg-6 no-padd">
+    <div class="col-xs-6 col-sm-6 col-md-6 no-padd">
       <label><b>Choose question type:</b></label>
     </div>
-    <div class="col-lg-6 no-padd">  
-      <select id="question-type" class="question-type-select form-control" v-model="questionType">
-        <option class="f-text"
-        v-bind:value="type"
-        v-bind:key="index"
-        v-for="(index, type) in types"
-        ><b>{{type}}</b></option>
+    <div class="col-xs-6 col-sm-6  col-md-6 no-padd">  
+
+      <!-- <v-select class="question-type-select form-control"  :value.sync="questionTypes">
+        <v-option  v-for="(type, key) in types" v-bind:value="key" v-bind:key="key"><b>{{type}}</b> </v-option>
+      </v-select> -->
+      <select id="question-type" class="question-type-select form-control" size="1" v-model="questionType">
+        <option  class="f-text"
+        v-bind:value="key"
+        v-bind:key="key"
+        v-for="(type, key) in types" ><b>{{type}}</b></option>
       </select>
     </div>  
   </div>
@@ -28,6 +31,7 @@ export default {
   },
   methods: {
     ...mapActions(['setQuestionType']),
+   
   },
   computed: {
     ...mapGetters([
