@@ -48,7 +48,7 @@
           </div>
 
           <button :disabled="errors.any()" type="submit" class="btn btn-success">Save Question</button> 
-          <button  type="button" class="btn btn-primary" @click.prevent="validateAnswers">Cancel</button> 
+          <button  type="button" class="btn btn-primary" @click.prevent="emptyChanges">Cancel</button> 
         </form>
       </div>      
     </div>
