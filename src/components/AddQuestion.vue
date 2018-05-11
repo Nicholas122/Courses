@@ -70,6 +70,8 @@ export default {
   data() {
     return {
       question: {
+        weight: 3,
+        
       },
       
     };

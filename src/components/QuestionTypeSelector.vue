@@ -14,14 +14,13 @@
         v-bind:value="key"
         v-bind:key="key"
         v-for="(type, key) in types" ><b>{{type}}</b></option>
-       
       </select>
     </div>  
   </div>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex';
+import { mapState, mapActions, mapGetters } from 'vuex';
 import * as types from '../store/questionTypes';
 
 export default {
@@ -35,9 +34,12 @@ export default {
    
   },
   computed: {
+    ...mapGetters([
+      'getQuestionType',
+      ]),
     questionType: {
       get() {
-        return this.$store.questionType;
+        return this.getQuestionType;
       },
       set(value) {
         return this.setQuestionType(value);
