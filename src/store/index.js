@@ -81,7 +81,7 @@ export default new Vuex.Store({
           }
         ]
       }
-
+      console.log(state.answers.filter(answer => answer.questionId === id));
       return state.answers.filter(answer => answer.questionId === id);
     },
     getTestTitle: state => {

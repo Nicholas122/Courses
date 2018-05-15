@@ -30,7 +30,7 @@
               </div>
             </div>
           </div>
-          <div v-if="questionType == 'MULTIPLY_CHOISE'">
+          <div v-if="questionType == 'MULTIPLE_CHOICE'">
             <div class="card-body">
               <Answers :questionId="question.id"> </Answers>
             </div>        
@@ -60,10 +60,6 @@ import VeeValidate from 'vee-validate'
 
 
 export default {
-
-  mounted() {
-      //this.editQuestion(this.question.id);
-    },
     computed: {
      ...mapGetters ([
        'getQuestionText'
@@ -82,7 +78,7 @@ export default {
     save: function() {
       this.$validator.validateAll().then((result) => {
         if (result) {
-          this.saveQuestion(this.question);
+          this.saveQuestion(this.question).then(() => {this.clearData()});
         }
       });
     },
