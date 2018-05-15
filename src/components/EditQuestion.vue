@@ -6,22 +6,28 @@
       </div>
       <div class="card-body">
         <form @submit.prevent="save">
-          <div class="form-group right">
-            <label><b>Choose weight:</b></label> 
-            <select  name="weight" v-validate="'required'" :class="{ 'form-control': true, 'has-error': errors.has('weight') }" id="question-weigth"  v-model="question.weight" >
-              <option  value="1">1</option>
-              <option  value="2">2</option>
-              <option  value="3">3</option>
-              <option  value="4">4</option>
-              <option  value="5">5</option>
-            </select>
-            <span v-show="errors.has('weight')" class="help error-message">This value should not be blank.</span>
-          </div>
+            <QuestionTypeSelector />
+            <div class="row marg zero-marg">
+              <div class="col-xs-6 col-sm-6 col-md-6 no-padd">
+                <label><b>Choose weight:</b></label> 
+              </div> 
+              <div class="col-xs-6 col-sm-6 col-md-6 no-padd"> 
+                <select  name="weight" v-validate="'required'" :class="{ 'form-control': true, 'has-error': errors.has('weight') }" id="question-weigth"  v-model="question.weight" >
+                  <option  value="1">1</option>
+                  <option  value="2">2</option>
+                  <option  value="3">3</option>
+                  <option  value="4">4</option>
+                  <option  value="5">5</option>
+                </select>
+                <span v-show="errors.has('weight')" class="help error-message">This value should not be blank.</span>
+              </div> 
+            </div>   
+          
           <div class="form-group">
             <textarea name="question" v-validate="'required'" :class="{ 'form-control': true, 'has-error': errors.has('question') }" type="text" id="question-text" rows="5"  placeholder="Please enter text for question" v-model.trim="question.text" ></textarea>
             <span v-show="errors.has('question')" class="help error-message">This value should not be blank.</span>
           </div>
-          <QuestionTypeSelector />
+          
           <label for=""></label>
           <div v-if="questionType == 'USER_INPUT'">
             <div class="card">

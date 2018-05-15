@@ -60,7 +60,7 @@ export default {
     state.questionId = maxId + 1;
   },
   [DELETE_ANSWER](state, { uid }) {
-    if (uid > 4) {
+    if (uid > 2) {
       state.answers = state.answers.filter(i => i.uid !== uid);
     }
   },

@@ -22,8 +22,7 @@
                 <option class="f-text" value="5">5</option>
               </select>
             </div>
-            
-           
+
           </div>
           <div class="form-group">
             <textarea name="question" v-validate="'required'" :class="{ 'form-control': true, 'has-error': errors.has('question') }" type="text" id="question-text" rows="5"  placeholder="Please enter text for question" v-model.trim="question.text" ></textarea>

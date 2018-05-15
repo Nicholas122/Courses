@@ -20,7 +20,7 @@
                 <span v-show="errors.has(readingQuestion.id)" class="help error-message">This value should not be blank.</span>
               </div>
             </div>
-            <div class="row zero-marg">
+            <div>
               <Answers :questionId="readingQuestion.id"></Answers>
             </div>
         </div>
