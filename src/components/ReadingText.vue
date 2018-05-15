@@ -32,7 +32,6 @@
 </div>
 </template>
 
-
 <script>
 import Answers from './Answers';
 import { mapActions } from 'vuex';

@@ -90,6 +90,7 @@ export default {
     },
     emptyChanges() {
       this.clearData();
+      
     }
 
   },

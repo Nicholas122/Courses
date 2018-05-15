@@ -24,9 +24,11 @@
             </div>
 
           </div>
-          <div class="form-group">
-            <textarea name="question" v-validate="'required'" :class="{ 'form-control': true, 'has-error': errors.has('question') }" type="text" id="question-text" rows="5"  placeholder="Please enter text for question" v-model.trim="question.text" ></textarea>
+          <div class="form-group" >
+            <textarea v-if="questionType == 'READING_TEXT'" name="question" v-validate="'required'" :class="{ 'form-control': true, 'has-error': errors.has('question') }" type="text" id="question-text" rows="1"  placeholder="Please enter text title" v-model.trim="question.text"></textarea>
+            <textarea v-else name="question" v-validate="'required'" :class="{ 'form-control': true, 'has-error': errors.has('question') }" type="text" id="question-text" rows="5"  placeholder="Please enter text for question" v-model.trim="question.text" ></textarea>
             <span v-show="errors.has('question')" class="help error-message">This value should not be blank.</span>
+           
           </div>
          <div v-if="questionType == 'USER_INPUT'">
             <div class="answer-header marg">
@@ -96,7 +98,7 @@ export default {
       this.$validator.validateAll().then((result) => {
         if (result) {
           this.question.id = this.questionId;
-          this.addQuestion(this.question).then(() => { this.question ={};})
+          this.addQuestion(this.question).then(() => { this.question ={weight: 1};})
         }
       });
     },
@@ -104,6 +106,7 @@ export default {
       this.question = {weight: 1};
 
       this.clearData();
+      
     }
 
   },

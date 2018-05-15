@@ -11,10 +11,10 @@
         <p><span class="question-info">Weight:</span> {{ question.weight }}</p>
         <p><span class="question-info">Question text:</span> {{question.text}}</p>
         <span class="question-info" v-if="question.answers.length > 0">Answers:</span>
-        <div class="row marg" v-for="(answer) in question.answers" :key="answer.id" >
+        <div class="row marg" v-for="(answer, index) in question.answers" :key="answer.id" >
 
          <div class="col-xs-1 col-sm-1  col-md-1 no-padd text-center">
-           <span><b>{{ answer.id }})</b></span>
+           <span><b>{{ index + 1 }})</b></span>
          </div>
          <div class="col-xs-10 col-sm-10  col-md-10">
            <input type="text" placeholder="Please enter the answer" class="form-control" v-model="answer.text" disabled="">
@@ -40,10 +40,10 @@
         <p><span class="question-info">Question text:</span> {{readingQuestion.questionText}}</p>
         <span class="question-info" v-if="readingQuestion.answers.length > 0">Answers:</span>
 
-        <div class="row marg" v-for="(answer) in readingQuestion.answers" :key="answer.id" >
+        <div class="row marg" v-for="(answer, index) in readingQuestion.answers" :key="answer.id" >
 
          <div class="col-xs-1 col-sm-1 col-md-1 no-padd text-center">
-           <span><b>{{ answer.id }})</b></span>
+           <span><b>{{ index + 1 }})</b></span>
          </div>
          <div class="col-xs-10 col-sm-10 col-md-10">
            <input type="text" placeholder="Please enter the answer" class="form-control" v-model="answer.text" disabled="">
