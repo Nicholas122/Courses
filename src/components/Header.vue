@@ -83,101 +83,103 @@
         </div>
       </div>
 
-
+          <span class="error-message" v-if="requestErrors.questions">
+            {{ requestErrors.questions }}
+          </span>
     </div>
   </div>
 </form>
 </div>
 </template> 
 <script>
-import {mapState, mapActions, mapGetters } from 'vuex';
-import MaskedInput from 'vue-text-mask';
+  import {mapState, mapActions, mapGetters } from 'vuex';
+  import MaskedInput from 'vue-text-mask';
 
-export default {
-  props: ['headerTitle'],
-  components: {
-    MaskedInput,
-  },
-  methods: {
-    ...mapActions([
-      'fetchSections',
-      'setTestTitle',
-      'setTestDescription',
-      'setTestSection',
-      'setTestTimeLimit',
-      'setTestRate',
-      'setTestRetakeTimeout'
-      ]),
-  },
-  mounted() {
-    this.fetchSections(this.$store.state.courseId);
-  },  
-  computed: {
-    ...mapGetters([
-      'getTestTitle',
-      'getTestDescription',
-      'getTestSection',
-      'getTestTimeLimit',
-      'getTestRetakeTimeout',
-      'getTestRate'
-      ]),
-    ...mapState({
-      sections: state => state.sections,
-      requestErrors: state => state.test.errors,
-    }),
-    title: {
-      get() {
-        return this.getTestTitle;
-      },
-      set(value) {
-        return this.setTestTitle(value);
-      },
+  export default {
+    props: ['headerTitle'],
+    components: {
+      MaskedInput,
     },
-    description: {
-      get() {
-        return this.getTestDescription;
-      },
-      set(value) {
-        return this.setTestDescription(value);
-      },
+    methods: {
+      ...mapActions([
+        'fetchSections',
+        'setTestTitle',
+        'setTestDescription',
+        'setTestSection',
+        'setTestTimeLimit',
+        'setTestRate',
+        'setTestRetakeTimeout'
+        ]),
     },
-    section: {
-      get() {
-        return this.getTestSection;
+    mounted() {
+      this.fetchSections(this.$store.state.courseId);
+    },  
+    computed: {
+      ...mapGetters([
+        'getTestTitle',
+        'getTestDescription',
+        'getTestSection',
+        'getTestTimeLimit',
+        'getTestRetakeTimeout',
+        'getTestRate'
+        ]),
+      ...mapState({
+        sections: state => state.sections,
+        requestErrors: state => state.test.errors,
+      }),
+      title: {
+        get() {
+          return this.getTestTitle;
+        },
+        set(value) {
+          return this.setTestTitle(value);
+        },
       },
-      set(value) {
-        return this.setTestSection(value);
+      description: {
+        get() {
+          return this.getTestDescription;
+        },
+        set(value) {
+          return this.setTestDescription(value);
+        },
       },
-    },
+      section: {
+        get() {
+          return this.getTestSection;
+        },
+        set(value) {
+          return this.setTestSection(value);
+        },
+      },
 
-    timeLimit: {
-      get() {
-        return this.getTestTimeLimit;
+      timeLimit: {
+        get() {
+          return this.getTestTimeLimit;
+        },
+        set(value) {
+          return this.setTestTimeLimit(value);
+        },
       },
-      set(value) {
-        return this.setTestTimeLimit(value);
-      },
-    },
 
-    testRate: {
-      get() {
-        return this.getTestRate;
+      testRate: {
+        get() {
+          return this.getTestRate;
+        },
+        set(value) {
+          return this.setTestRate(value);
+        },
       },
-      set(value) {
-        return this.setTestRate(value);
-      },
-    },
 
-    retakeTimeout: {
-      get() {
-        return this.getTestRetakeTimeout;
-      },
-      set(value) {
-        return this.setTestRetakeTimeout(value);
+      retakeTimeout: {
+        get() {
+          return this.getTestRetakeTimeout;
+        },
+        set(value) {
+          return this.setTestRetakeTimeout(value);
+        },
       },
     },
-  },
-}
+  }
 </script>     
 <style>
 .testBorder {

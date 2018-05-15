@@ -81,7 +81,6 @@ export default new Vuex.Store({
           }
         ]
       }
-      console.log(state.answers.filter(answer => answer.questionId === id));
       return state.answers.filter(answer => answer.questionId === id);
     },
     getTestTitle: state => {
@@ -100,7 +99,7 @@ export default new Vuex.Store({
       return state.test.data.retakeTimeout;
     },
     getTestRate: state => {
-      return state.test.data.passingScorePercent;
+      return state.test.data.passingScorePercent || 60;
     },
     getQuestionText: state => {
       return state.test.data.title;
