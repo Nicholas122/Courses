@@ -19,7 +19,7 @@ const state = {
       description: '',
       section: '',
       timeLimit: '',
-      passingScorePercent: '',
+      passingScorePercent: 60,
       retakeTimeout: ''
     }
   },
@@ -99,7 +99,7 @@ export default new Vuex.Store({
       return state.test.data.retakeTimeout;
     },
     getTestRate: state => {
-      return state.test.data.passingScorePercent || 60;
+      return state.test.data.passingScorePercent;
     },
     getQuestionText: state => {
       return state.test.data.title;
