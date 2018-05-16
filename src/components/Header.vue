@@ -82,8 +82,6 @@
           <span class="timePHolders">* period of time after which a user can retake the test in days</span>
         </div>
       </div>
-
-
     </div>
   </div>
 </form>
