@@ -1,9 +1,9 @@
 <template>
   <div class="container">
-    <div v-bind:style="{ display: isActive }">
-      <div class="alert alert-success alert-dismissible" v-if="testCreate === true" role="alert" >
-          <strong>Warning!</strong> Better check yourself, you're not looking too good.
-          <button  type="button" data-dismiss="alert" aria-label="Close" class="close" @click.prevent="close"><span aria-hidden="true">х</span></button>
+    <div class="row" v-bind:style="{ display: isActive }">
+      <div class="alert alert-success alert-dismissible" v-if="test.created === true" role="alert" >
+        <strong>Success!</strong> Test successfully created.
+        <button  type="button" data-dismiss="alert" aria-label="Close" class="close" @click.prevent="close"><span aria-hidden="true">х</span></button>
       </div> 
     </div>
     <div class="row">
@@ -14,7 +14,7 @@
       <div class="col-sm-6 col-md-6">
         <questions></questions>
 
-        <button v-if="this.questions"  class="btn btn-success create-test-btn"  @click.prevent="createTest" >Create test</button>
+        <button class="btn btn-success create-test-btn"  @click.prevent="createTest" >Create test</button>
       </div>
       <div class="col-sm-6 col-md-6">
         <component :is="questionComponent"></component>
@@ -36,17 +36,17 @@ export default {
   data() {
     return {
       headerTitle: 'Create test',
-      testCreate: false,
       isActive: 'inline',
     };
   },
   created() {
-      this.setCourseId(this.courseId);
+    this.setCourseId(this.courseId);
   },
   computed: mapState({
     questions: state => state.questions,
     testData: state => state.test.data,
-    questionComponent: state => state.questionComponent
+    questionComponent: state => state.questionComponent,
+    test: state => state.test
   }),
   components: {
     questionHeader,
@@ -60,27 +60,14 @@ export default {
       'mergeTestData',
       'setCourseId'
       ]),
-      close(){
-        console.log('2ef')
-        this.isActive = 'none';
-      },
+    close(){
+      this.isActive = 'none';
+    },
     createTest() {
-      console.log('pre-add')
-      console.log(this.questions.length)
-      if(this.questions.length >= 1 ){
-           this.mergeTestData()
-           this.createTestRequest(this.testData);
-          console.log('add')
-      
-      if(this.testData.title !== '' && this.testData.description !== '' && this.testData.section !== '' &&
-         this.testData.timeLimit !== '' && this.testData.retakeTimeout !== '' && this.testData.passingScorePercent !== '' ){
-            this.testCreate = true;
-           
-            console.log('watch')
-      }
-      }
-    }
-  }
+     this.mergeTestData()
+     this.createTestRequest(this.testData);
+   }
+ }
 };
 </script>
 <style>

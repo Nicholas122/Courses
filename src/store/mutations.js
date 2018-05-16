@@ -104,6 +104,7 @@ export default {
     state.test = {
       fetching: false,
       creating: false,
+      created: true,
       error: false,
       errors: {},
       data: {
@@ -112,7 +113,7 @@ export default {
         description: '',
         section: '',
         timeLimit: '',
-        passingScorePercent: '',
+        passingScorePercent: 60,
         retakeTimeout: ''
       }
     };

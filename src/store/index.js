@@ -11,6 +11,7 @@ const state = {
   test: {
     fetching: false,
     creating: false,
+    created: false,
     error: false,
     errors: {},
     data: {
