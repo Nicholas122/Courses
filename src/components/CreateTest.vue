@@ -5,10 +5,6 @@
           <strong>Warning!</strong> Better check yourself, you're not looking too good.
           <button  type="button" data-dismiss="alert" aria-label="Close" class="close" @click.prevent="close"><span aria-hidden="true">х</span></button>
       </div> 
-          
-  
-  
-
     </div>
     <div class="row">
       <question-header :headerTitle="headerTitle"> </question-header>
