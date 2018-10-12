@@ -82,6 +82,7 @@ export default new Vuex.Store({
           }
         ]
       }
+      
       return state.answers.filter(answer => answer.questionId === id);
     },
     getTestTitle: state => {
@@ -91,7 +92,7 @@ export default new Vuex.Store({
       return state.test.data.description;
     },
     getTestSection: state => {
-      return state.test.data.section;
+      return state.test.data.section.id;
     },
     getTestTimeLimit: state => {
       return state.test.data.timeLimit;
