@@ -11,20 +11,20 @@ const state = {
   test: {
     fetching: false,
     creating: false,
-    created: false,
     error: false,
     errors: {},
     data: {
+      id: '',
       title: '',
       questions: [],
       description: '',
       section: '',
       timeLimit: '',
-      passingScorePercent: 60,
+      passingScorePercent: '',
       retakeTimeout: ''
     }
   },
-  questionType: 'USER_INPUT',
+  questionType: Object.keys(types)[0],
   questions: [],
   answers: [],
   readingQuestions: [],
@@ -44,45 +44,7 @@ export default new Vuex.Store({
     getReadingText: state => {
       return state.readingText
     },
-    getQuestionType: state => {
-      return state.questionType;
-    },
     getAnswersByQuestionId: (state) => (id) => {
-      var answers =  state.answers.filter(answer => answer.questionId === id);
-
-      if (answers.length === 0) {
-        state.answers = [
-          { 
-            id:'1',  
-            text:'',
-            questionId: id,
-            correct: true,
-            uid: 1
-          },
-          { 
-            id:'2',  
-            text:'',
-            questionId: id,
-            correct:'',
-            uid: 2
-          },
-          { 
-            id:'3',  
-            text:'',
-            questionId: id,
-            correct:'',
-            uid: 3
-          },
-          { 
-            id:'4',  
-            text:'',
-            questionId: id,
-            correct:'',
-            uid: 4
-          }
-        ]
-      }
-      
       return state.answers.filter(answer => answer.questionId === id);
     },
     getTestTitle: state => {

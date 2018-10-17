@@ -1,36 +1,46 @@
 <template>
   <div>
     <form>
-        <div class="row marg zero-marg">
-          <textarea placeholder="Please enter the reading text" class="form-control" rows="12" id="readingText" v-model="readingText"></textarea>
+      <div class="answer-header">
+        <div class="row">
+          <div class="col-lg-7">
+            <h4>Reading text </h4>
+          </div>
+          <div class="col-lg-5">
+            <button  class="btn btn-success " v-on:click.prevent="createReadingQuestion">Add Reading Question </button>
+          </div>
         </div>
-        
+      </div>
+      <div class="card-body">
+        <div class="col-lg-12">
+          <textarea placeholder="Please enter the reading text" class="form-control" id="readingText" v-model="readingText"></textarea>
+        </div>
+      </div>
         <div  v-for="(readingQuestion, index)  in readingQuestions" :key="readingQuestion.id" >
-            <div class="row zero-marg answer-header no-marg no-border-bottom" >
-              <div class="col-xs-11 col-sm-11 col-md-11 marg">
+          
+           <div class="row marg yes-marg answer-header">
+              <div class="col-lg-11 no-padd">
                 <h4>
                   Question - {{ index + 1 }}
                 </h4>
               </div>
-              <div class="col-xs-1 col-sm-1  col-md-1 marg text-center">
+              <div class="col-lg-1 no-padd text-center">
                 <span  style="color:#dc3545;cursor:pointer" @click.prevent="removereadingQuestion(readingQuestion.id)"><b>X</b> </span>
               </div>
-              <div class="col-xs-12 col-sm-12 col-md-12 ">
-                <textarea placeholder="Please enter the question" class="form-control " rows="6" v-model="readingQuestion.questionText" :name="readingQuestion.id" v-validate="'required'" :class="{'has-error': errors.has(readingQuestion.id) }"></textarea>
-                <span v-show="errors.has(readingQuestion.id)" class="help error-message">This value should not be blank.</span>
-              </div>
-            </div>
-            <div>
-              <Answers :questionId="readingQuestion.id"></Answers>
-            </div>
+            </div>  
+        <div class="col-lg-12 ">
+          <textarea placeholder="Please enter the question" class="form-control " :id="readingQuestion.id" v-model="readingQuestion.questionText"></textarea>
         </div>
-        <div class="row marg zero-marg">
-          <button  class="btn btn-success " v-on:click.prevent="createReadingQuestion">Add Reading Question </button>
+        <div class="col-lg-12 ">
+          <Answers :questionId="readingQuestion.id"></Answers>
+        </div>
       </div>
+
     
   </form>
 </div>
 </template>
+
 
 <script>
 import Answers from './Answers';
@@ -38,9 +48,7 @@ import { mapActions } from 'vuex';
 import { mapState } from 'vuex'
 import { mapGetters } from 'vuex'
 
-
 export default {
-  inject: ['$validator'],
   computed: { 
     ...mapGetters([
       'getReadingText',
@@ -54,9 +62,6 @@ export default {
       }
     },
     ...mapState(['readingQuestions'])
-  },
-  mounted () {
-      this.$emit('validateAnswers');
   },
   methods: {
     ...mapActions([
@@ -75,10 +80,6 @@ export default {
 
     removereadingQuestion(id) {
       this.deleteReadingQuestion(id);
-    },
-
-    validateAnswers() {
-      this.$validator.validateAll();
     }
   },
   components:{

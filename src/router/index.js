@@ -17,6 +17,11 @@ export default new Router({
       path: '/test-edit/:testId',
       component: EditTests,
       props: true
-    }
+    },
+/*    {
+      path: '/test-pass/:testId',
+      component: PassTest,
+      props: true
+    }*/
   ]
 })

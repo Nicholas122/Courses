@@ -8,8 +8,6 @@ import router from './router'
 import VeeValidate from 'vee-validate'
 Vue.use(VeeValidate);
 
-import vSelect from 'vue-select'
-Vue.component('v-select', vSelect)
 /* eslint-disable no-new */
 new Vue({
 	el: '#app',

@@ -6,49 +6,42 @@
       </div>
       <div class="card-body">
         <form @submit.prevent="save">
-            <QuestionTypeSelector />
-            <div class="row marg zero-marg">
-              <div class="col-xs-6 col-sm-6 col-md-6 no-padd">
-                <label><b>Choose weight:</b></label> 
-              </div> 
-              <div class="col-xs-6 col-sm-6 col-md-6 no-padd"> 
-                <select  name="weight" v-validate="'required'" :class="{ 'form-control': true, 'has-error': errors.has('weight') }" id="question-weigth"  v-model="question.weight" >
-                  <option  value="1">1</option>
-                  <option  value="2">2</option>
-                  <option  value="3">3</option>
-                  <option  value="4">4</option>
-                  <option  value="5">5</option>
-                </select>
-                <span v-show="errors.has('weight')" class="help error-message">This value should not be blank.</span>
-              </div> 
-            </div>   
-          
+          <div class="form-group right">
+            <label><b>Choose weight:</b></label> 
+            <select  name="weight" v-validate="'required'" :class="{ 'form-control': true, 'has-error': errors.has('weight') }" id="question-weigth"  v-model="question.weight" >
+              <option  value="1">1</option>
+              <option  value="2">2</option>
+              <option  value="3">3</option>
+              <option  value="4">4</option>
+              <option  value="5">5</option>
+            </select>
+            <span v-show="errors.has('weight')" class="help error-message">This value should not be blank.</span>
+          </div>
           <div class="form-group">
             <textarea name="question" v-validate="'required'" :class="{ 'form-control': true, 'has-error': errors.has('question') }" type="text" id="question-text" rows="5"  placeholder="Please enter text for question" v-model.trim="question.text" ></textarea>
             <span v-show="errors.has('question')" class="help error-message">This value should not be blank.</span>
           </div>
-          
-          <label for=""></label>
-          <div v-if="questionType == 'USER_INPUT'">
+          <QuestionTypeSelector></QuestionTypeSelector>
+          <label></label>
+          <div v-if="question.questionType == 'USER_INPUT'">
             <div class="card">
               <div class="card-body">
                 <h4>User must answer of this question </h4>
               </div>
             </div>
           </div>
-          <div v-if="questionType == 'MULTIPLE_CHOICE'">
+          <div v-if="question.questionType == 'MULTIPLE_CHOICE'">
             <div class="card-body">
-              <Answers :questionId="question.id"> </Answers>
+              <Answers :questionId="question.answers.id"> </Answers>
             </div>        
           </div>
-          <div v-if="questionType == 'READING_TEXT'">
+          <div v-if="question.questionType == 'READING_TEXT'">
             <div class="card-body">
               <readingText></readingText>
             </div>
           </div>
 
-          <button :disabled="errors.any()" type="submit" class="btn btn-success marg"  >Save Question</button>
-          <button  type="button" class="btn btn-primary" @click.prevent="emptyChanges">Cancel</button>  
+          <input :disabled="errors.any()" type="submit" class="btn btn-success marg"  value="Save Question"> 
         </form>
       </div>      
     </div>
@@ -66,6 +59,10 @@ import VeeValidate from 'vee-validate'
 
 
 export default {
+
+  mounted() {
+      this.editedQuestion(this.question.id);
+    },
     computed: {
      ...mapGetters ([
        'getQuestionText'
@@ -79,19 +76,14 @@ export default {
    methods: {
     ...mapActions([
       'saveQuestion',
-      'clearData'
       ]),
     save: function() {
       this.$validator.validateAll().then((result) => {
         if (result) {
-          this.saveQuestion(this.question).then(() => {this.clearData()});
+          this.saveQuestion(this.question);
         }
       });
     },
-    emptyChanges() {
-      this.clearData();
-      
-    }
 
   },
   components: {
