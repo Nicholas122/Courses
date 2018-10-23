@@ -6,9 +6,9 @@
       </div>
     </div>
     <div class="card-body">
-      <div class="col-md-12" v-if="question.questionType != 'READING_TEXT'">
+      <div class="col-md-12" v-if="question.type != 'READING_TEXT'">
         <p><span class="question-info">Question text:</span> {{question.text}}</p>
-        <p><span class="question-info">Question type:</span> {{ question.questionType}}</p>
+        <p><span class="question-info">Question type:</span> {{ question.type}}</p>
         <p><span class="question-info">Weight:</span> {{ question.weight }}</p>
         <span class="question-info" v-if="question.answers.length > 0">Answers:</span>
         <div class="row marg" v-for="(answer, index) in question.answers" :key="answer.id" >
@@ -28,9 +28,9 @@
    </div>
    
 
-   <div class="card-body" v-if="question.questionType == 'READING_TEXT'">
+   <div class="card-body" v-if="question.type == 'READING_TEXT'">
     <p><span class="question-info">Question text:</span> {{question.text}}</p>
-    <p><span class="question-info">Question type:</span>{{ question.questionType  }}</p>
+    <p><span class="question-info">Question type:</span>{{ question.type  }}</p>
     <p><span class="question-info">Reading text:</span> {{question.readingText}}</p>
     <p><span class="question-info" v-if="question.weight">Weight:</span> {{ question.weight }}</p>
     <span class="question-info" v-if="question.subQuestions.length > 0">Reading questions:</span>
