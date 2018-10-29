@@ -13,7 +13,7 @@
       </div>
 
     <div class="card-body">
-      <div class="row marg" v-for="(answer, index) in answers" :key="answer.id" >
+      <div class="row marg" v-for="(answer, index) in answers" :key="answer.uid" >
 
        <div class="col-lg-1 no-padd text-center">
          <span><b>{{ index + 1}})</b></span>
@@ -22,7 +22,7 @@
          <input type="text" placeholder="Please enter the answer" class="form-control" v-model="answer.text">
        </div>
        <div class="col-lg-1">
-         <input type="checkbox"  :id="answer.id"  v-model="answer.correct">
+         <input type="checkbox"  :id="answer.uid"  v-model="answer.correct">
        </div>
        <div class="col-lg-1 no-padd text-center">
            <span  style="color:#dc3545;cursor:pointer" @click.prevent="removeAnswer(answer.uid)"> <b>X</b> </span>

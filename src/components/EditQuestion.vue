@@ -23,19 +23,19 @@
           </div>
           <QuestionTypeSelector></QuestionTypeSelector>
           <label></label>
-          <div v-if="question.questionType == 'USER_INPUT'">
+          <div v-if="question.type == 'USER_INPUT'">
             <div class="card">
               <div class="card-body">
                 <h4>User must answer of this question </h4>
               </div>
             </div>
           </div>
-          <div v-if="question.questionType == 'MULTIPLE_CHOICE'">
+          <div v-if="question.type == 'MULTIPLE_CHOICE'">
             <div class="card-body">
-              <Answers :questionId="question.answers.id"> </Answers>
+              <Answers :questionId="question.id"> </Answers>
             </div>        
           </div>
-          <div v-if="question.questionType == 'READING_TEXT'">
+          <div v-if="question.type == 'READING_TEXT'">
             <div class="card-body">
               <readingText></readingText>
             </div>
@@ -50,18 +50,17 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
-import { mapState } from 'vuex'
-import ReadingText from './ReadingText';
-import QuestionTypeSelector from './QuestionTypeSelector';
-import Answers from './Answers';
-import VeeValidate from 'vee-validate'
+  import { mapActions, mapGetters } from 'vuex';
+  import { mapState } from 'vuex'
+  import ReadingText from './ReadingText';
+  import QuestionTypeSelector from './QuestionTypeSelector';
+  import Answers from './Answers';
+  import VeeValidate from 'vee-validate'
 
 
-export default {
+  export default {
 
-  mounted() {
-      this.editedQuestion(this.question.id);
+    mounted() {
     },
     computed: {
      ...mapGetters ([

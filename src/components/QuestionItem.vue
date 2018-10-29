@@ -11,7 +11,7 @@
         <p><span class="question-info">Question type:</span> {{ question.type}}</p>
         <p><span class="question-info">Weight:</span> {{ question.weight }}</p>
         <span class="question-info" v-if="question.answers.length > 0">Answers:</span>
-        <div class="row marg" v-for="(answer, index) in question.answers" :key="answer.id" >
+        <div class="row marg" v-for="(answer, index) in question.answers" :key="answer.uid" >
 
          <div class="col-lg-1 no-padd text-center">
            <span><b>{{ index + 1 }})</b></span>
@@ -20,7 +20,7 @@
            <input type="text" placeholder="Please enter the answer" class="form-control" v-model="answer.text" disabled="">
          </div>
          <div class="col-lg-1">
-           <input type="checkbox"  :id="answer.id"  v-model="answer.isCorrect" disabled="">
+           <input type="checkbox"  :id="answer.uid"  v-model="answer.correct" disabled="">
          </div>
 
        </div>
@@ -40,7 +40,7 @@
         <p><span class="question-info">Question text:</span> {{readingQuestion.questionText}}</p>
         <span class="question-info" v-if="readingQuestion.answers.length > 0">Answers:</span>
 
-        <div class="row marg" v-for="(answer, index) in readingQuestion.answers" :key="answer.id" >
+        <div class="row marg" v-for="(answer, index) in readingQuestion.answers" :key="answer.uid" >
 
          <div class="col-lg-1 no-padd text-center">
            <span><b>{{ index + 1 }})</b></span>
@@ -49,7 +49,7 @@
            <input type="text" placeholder="Please enter the answer" class="form-control" v-model="answer.text" disabled="">
          </div>
          <div class="col-lg-1">
-           <input type="checkbox"  :id="answer.id"  v-model="answer.correct" disabled="">
+           <input type="checkbox"  :id="answer.uid"  v-model="answer.correct" disabled="">
          </div>
        </div>
      </div>

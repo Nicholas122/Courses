@@ -83,7 +83,13 @@
         </div>
       </div>
 
-
+      <div class="row" v-if="requestErrors.questions">
+        <div class="col-md-4">
+          <span class="error-message">
+            {{ requestErrors.questions }}
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </form>

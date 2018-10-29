@@ -95,6 +95,10 @@ export const mergeTestData = ({commit}) => {
 export const createTestRequest = ({commit}, data) => {
     commit(CREATE_TEST_REQUEST);
 
+    if (typeof(data.section) === 'object') {
+        data.section = data.section.id;
+    }
+
     return api.createTest(data)
         .then(r => commit(CREATE_TEST_SUCCESSFUL, {data: r}))
         .catch(errors => commit(CREATE_TEST_FAILURE, {errors}));

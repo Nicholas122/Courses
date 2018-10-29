@@ -26,18 +26,22 @@
           <div v-if="questionType == 'USER_INPUT'">
             <div class="answer-header">
 
-                <h4>User must answer of this question </h4>
+              <h4>User must answer of this question </h4>
 
             </div>
           </div>
           <div v-if="questionType == 'MULTIPLE_CHOICE'">
 
-              <Answers :questionId="questionId"> </Answers>
-        
+            <Answers :questionId="questionId"> </Answers>
+            <div v-if="answerError">
+              <span class="error-message">
+                {{ answerError }}
+              </span>           
+            </div>
           </div>
           <div v-if="questionType == 'READING_TEXT'">
 
-              <readingText></readingText>
+            <readingText></readingText>
 
           </div>
 
@@ -50,34 +54,38 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
-import { mapState } from 'vuex'
-import ReadingText from './ReadingText';
-import QuestionTypeSelector from './QuestionTypeSelector';
-import Answers from './Answers';
-import VeeValidate from 'vee-validate'
+  import { mapActions, mapGetters } from 'vuex';
+  import { mapState } from 'vuex'
+  import ReadingText from './ReadingText';
+  import QuestionTypeSelector from './QuestionTypeSelector';
+  import Answers from './Answers';
+  import VeeValidate from 'vee-validate'
 
 
-export default {
+  export default {
 
-  data() {
-    return {
-      question: {
-      },
-      
-    };
-  },
-  mounted() {
+    data() {
+      return {
+        question: {
+          "weight": 3
+        },
+        answerError: ''
+      };
+    },
+    mounted() {
       //this.editQuestion(this.question.id);
     },
     computed: {
      ...mapGetters ([
-       'getQuestionText'
+       'getQuestionText',
+       'getAnswersByQuestionId'
        ]),
 
      ...mapState({
       questionType: state => state.questionType,
-      questionId: state => state.questionId
+      questionId: state => state.questionId,
+      readingQuestions: state => state.readingQuestions,
+      readingTextQuestionErrors: state => state.readingTextQuestionErrors
     }),
    },
    methods: {
@@ -87,9 +95,25 @@ export default {
     create: function() {
       this.$validator.validateAll().then((result) => {
         if (result) {
-          this.question.id = this.questionId;
-          
-          this.addQuestion(this.question).then(() => { this.question ={};})
+          if (this.questionType === 'MULTIPLE_CHOICE' && this.getAnswersByQuestionId(this.questionId).length < 2) {
+            this.answerError = 'The question must have more than or equal to two answers.';
+          }
+
+          if (this.questionType === 'READING_TEXT') {
+            this.readingTextQuestionErrors = [];
+            for (var i = 0; i < this.readingQuestions.length; i++) {
+              if (this.readingQuestions[i].answers.length < 2) {
+                document.getElementById('errors-'+this.readingQuestions[i].id).innerHTML = '<span class="error-message">The question must have more than or equal to two answers.<span>';
+                this.readingTextQuestionErrors[this.readingQuestions[i].id] = '<span class="error-message">The question must have more than or equal to two answers.<span>';
+              }
+            }
+
+          }
+          if (this.answerError === '' && this.readingTextQuestionErrors.length === 0) {
+            this.question.id = this.questionId;
+
+            this.addQuestion(this.question).then(() => { this.question ={"weight": 3};})
+          }
         }
       });
     },

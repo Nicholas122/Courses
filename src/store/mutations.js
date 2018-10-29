@@ -74,7 +74,6 @@ export default {
             return o.uid;
         }))) || 0;
 
-        answer.id = maxId + 1;
         answer.uid = maxUid + 1;
 
         state.answers.push(answer);
@@ -99,6 +98,10 @@ export default {
     },
     [SET_SECTIONS](state, sections) {
         state.sections = sections;
+
+        if (state.test.creating) {
+            state.test.data.section = sections[0];
+        }
     },
 
     [CREATE_TEST_REQUEST](state) {
@@ -127,6 +130,7 @@ export default {
         state.test.creating = false;
         state.test.error = true;
         state.test.errors = errors.errors.response.data.form.children;
+        state.test.data.section = state.sections.find(section => section.id === state.test.data.section)
     },
     [EDIT_TEST_REQUEST](state) {
         state.test.creating = true;
@@ -196,6 +200,8 @@ export default {
         state.test.data.timeLimit = data.data.timeLimit;
         state.test.data.passingScorePercent = data.data.passingScorePercent;
         state.test.data.retakeTimeout = data.data.retakeTimeout;
+        state.test.creating = false;
+        state.test.updating = true;
     },
 
     [SET_QUESTION_DATA](state, data) {

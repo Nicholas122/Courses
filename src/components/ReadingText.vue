@@ -33,6 +33,7 @@
         </div>
         <div class="col-lg-12 ">
           <Answers :questionId="readingQuestion.id"></Answers>
+          <div :id="'errors-' + readingQuestion.id"></div>
         </div>
       </div>
 

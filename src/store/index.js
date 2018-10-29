@@ -10,7 +10,8 @@ Vue.use(Vuex);
 const state = {
   test: {
     fetching: false,
-    creating: false,
+    updating: false,
+    creating: true,
     error: false,
     errors: {},
     data: {
@@ -19,9 +20,9 @@ const state = {
       questions: [],
       description: '',
       section: '',
-      timeLimit: '',
+      timeLimit: 0,
       passingScorePercent: '',
-      retakeTimeout: ''
+      retakeTimeout: 0
     }
   },
   questionType: Object.keys(types)[0],
@@ -33,7 +34,8 @@ const state = {
   courseId: '',
   questionComponent: 'add-question',
   editedQuestion: {},
-  questionId: 1
+  questionId: 1,
+  readingTextQuestionErrors: []
 };
 
 export default new Vuex.Store({

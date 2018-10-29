@@ -18,46 +18,46 @@
 </template>
 
 <script>
-import questionHeader from "./Header";
-import QuestionsList from "./QuestionsList";
-import AddQuestion from "./AddQuestion";
-import EditQuestion from "./EditQuestion";
-import { mapActions } from 'vuex';
-import { mapState } from 'vuex'
+  import questionHeader from "./Header";
+  import QuestionsList from "./QuestionsList";
+  import AddQuestion from "./AddQuestion";
+  import EditQuestion from "./EditQuestion";
+  import { mapActions } from 'vuex';
+  import { mapState } from 'vuex'
 
-export default {
-  props: ['courseId'],
-  data() {
-    return {
-      headerTitle: 'Create test',
-    };
-  },
-  created() {
+  export default {
+    props: ['courseId'],
+    data() {
+      return {
+        headerTitle: 'Create test',
+      };
+    },
+    created() {
       this.setCourseId(this.courseId);
-  },
-  computed: mapState({
-    questions: state => state.questions,
-    testData: state => state.test.data,
-    questionComponent: state => state.questionComponent
-  }),
-  components: {
-    questionHeader,
-    questions: QuestionsList,
-    AddQuestion,
-    EditQuestion
-  },
-  methods: {
-    ...mapActions([
-      'createTestRequest',
-      'mergeTestData',
-      'setCourseId'
-      ]),
-    createTest() {
-      this.mergeTestData()
-      this.createTestRequest(this.testData);
+    },
+    computed: mapState({
+      questions: state => state.questions,
+      testData: state => state.test.data,
+      questionComponent: state => state.questionComponent
+    }),
+    components: {
+      questionHeader,
+      questions: QuestionsList,
+      AddQuestion,
+      EditQuestion
+    },
+    methods: {
+      ...mapActions([
+        'createTestRequest',
+        'mergeTestData',
+        'setCourseId'
+        ]),
+      createTest() {
+        this.mergeTestData()
+        this.createTestRequest(this.testData);      
+      }
     }
-  }
-};
+  };
 </script>
 <style>
 .col-padding-0 {

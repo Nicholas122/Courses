@@ -27,7 +27,7 @@ export default {
   computed: {
     questionType: {
       get() {
-        return this.$store.questionType;
+        return this.$store.state.questionType;
       },
       set(value) {
         return this.setQuestionType(value);
