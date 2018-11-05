@@ -6,51 +6,57 @@
       </div>
       <div class="card-body">
         <form @submit.prevent="create">
-          <div class="form-group right">
-            <label><b>Choose weight:</b></label> 
-            <select  name="weight" v-validate="'required'" :class="{ 'form-control': true, 'has-error': errors.has('weight') }" id="question-weigth"  v-model="question.weight" >
-              <option  value="1">1</option>
-              <option  value="2">2</option>
-              <option  value="3">3</option>
-              <option  value="4">4</option>
-              <option  value="5">5</option>
-            </select>
-            <span v-show="errors.has('weight')" class="help error-message">This value should not be blank.</span>
-          </div>
-          <div class="form-group">
-            <textarea name="question" v-validate="'required'" :class="{ 'form-control': true, 'has-error': errors.has('question') }" type="text" id="question-text" rows="5"  placeholder="Please enter text for question" v-model.trim="question.text" ></textarea>
-            <span v-show="errors.has('question')" class="help error-message">This value should not be blank.</span>
-          </div>
-          <QuestionTypeSelector />
-          <label for=""></label>
-          <div v-if="questionType == 'USER_INPUT'">
-            <div class="answer-header">
-
-              <h4>User must answer of this question </h4>
-
+          <div class="row">
+            <div class="col-md-8">
+              <QuestionTypeSelector />
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+               <label style="display: block;"><b>Choose weight:</b></label> 
+               <select  name="weight" v-validate="'required'" :class="{ 'form-control': true, 'has-error': errors.has('weight') }" id="question-weigth"  v-model="question.weight" >
+                <option  value="1">1</option>
+                <option  value="2">2</option>
+                <option  value="3">3</option>
+                <option  value="4">4</option>
+                <option  value="5">5</option>
+              </select>
+              <span v-show="errors.has('weight')" class="help error-message">This value should not be blank.</span>
             </div>
           </div>
-          <div v-if="questionType == 'MULTIPLE_CHOICE'">
+        </div>
+        <div class="form-group">
+          <textarea name="question" v-validate="'required'" :class="{ 'form-control': true, 'has-error': errors.has('question') }" type="text" id="question-text" rows="5"  placeholder="Please enter text for question" v-model.trim="question.text" ></textarea>
+          <span v-show="errors.has('question')" class="help error-message">This value should not be blank.</span>
+        </div>
+        <label for=""></label>
+        <div v-if="questionType == 'USER_INPUT'">
+          <div class="answer-header">
 
-            <Answers :questionId="questionId"> </Answers>
-            <div v-if="answerError">
-              <span class="error-message">
-                {{ answerError }}
-              </span>           
-            </div>
-          </div>
-          <div v-if="questionType == 'READING_TEXT'">
-
-            <readingText></readingText>
+            <h4>User must answer of this question </h4>
 
           </div>
+        </div>
+        <div v-if="questionType == 'MULTIPLE_CHOICE'">
 
-          <input :disabled="errors.any()" type="submit" class="btn btn-success marg"  value="Add Question"> 
-        </form>
-      </div>      
-    </div>
+          <Answers :questionId="questionId"> </Answers>
+          <div v-if="answerError">
+            <span class="error-message">
+              {{ answerError }}
+            </span>           
+          </div>
+        </div>
+        <div v-if="questionType == 'READING_TEXT'">
 
+          <readingText></readingText>
+
+        </div>
+
+        <input :disabled="errors.any()" type="submit" class="btn btn-success marg"  value="Save question"> 
+      </form>
+    </div>      
   </div>
+
+</div>
 </template>
 
 <script>

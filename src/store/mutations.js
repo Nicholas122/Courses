@@ -31,6 +31,32 @@ import {
 export default {
     [SET_QUESTION_TYPE](state, status) {
         state.questionType = status;
+
+        if (status === 'MULTIPLE_CHOICE') {
+            for (var i = 3; i >= 0; i--) {
+                state.answers.push({
+                    text:'',
+                    correct:'',
+                    questionId: state.questionId
+                })
+            }
+        }
+
+        if (status === 'READING_TEXT') {
+            state.readingQuestions.push({
+                "answers": [],
+                "id": 1,
+                "questionTest": "",
+                "questionWeight": 1
+            })
+            for (var i = 3; i >= 0; i--) {
+                state.answers.push({
+                    text:'',
+                    correct:'',
+                    questionId: 1
+                })
+            }
+        }
     },
     [DELETE_QUESTION](state, {id}) {
         state.questions = state.questions.filter(i => i.id !== id);
@@ -88,7 +114,7 @@ export default {
     [ADD_READING_QUESTION](state, question) {
         question.id = state.questionId;
         question.answers = state.answers.filter(answer => answer.questionId === question.id);
-        state.answers = [];
+        //state.answers = [];
 
         state.readingQuestions.push(question);
 

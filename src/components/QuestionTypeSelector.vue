@@ -1,6 +1,6 @@
 <template>
   <div class="form-group">
-    <label><b>Choose question type:</b></label>
+    <label style="display: block;"><b>Choose question type:</b></label>
     <select id="question-type" class="question-type-select form-control" v-model="questionType">
       <option
       v-bind:value="key"
@@ -39,7 +39,7 @@ export default {
 
 <style>
 #question-type {
-  width: 30%;
+  width: 80%;
   display: inline-block;
   height: 34px;
 }
