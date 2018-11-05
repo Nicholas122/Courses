@@ -35,7 +35,6 @@ const state = {
   questionComponent: 'add-question',
   editedQuestion: {},
   questionId: 1,
-  readingTextQuestionErrors: []
 };
 
 export default new Vuex.Store({

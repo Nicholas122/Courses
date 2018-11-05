@@ -75,7 +75,8 @@
         question: {
           "weight": 1
         },
-        answerError: ''
+        answerError: '',
+        readingTextQuestionErrors: []
       };
     },
     mounted() {
@@ -91,7 +92,6 @@
       questionType: state => state.questionType,
       questionId: state => state.questionId,
       readingQuestions: state => state.readingQuestions,
-      readingTextQuestionErrors: state => state.readingTextQuestionErrors
     }),
    },
    methods: {
@@ -107,8 +107,9 @@
 
           if (this.questionType === 'READING_TEXT') {
             this.readingTextQuestionErrors = [];
+
             for (var i = 0; i < this.readingQuestions.length; i++) {
-              if (this.readingQuestions[i].answers.length < 2) {
+              if (this.getAnswersByQuestionId(this.readingQuestions[i].id).length < 2) {
                 document.getElementById('errors-'+this.readingQuestions[i].id).innerHTML = '<span class="error-message">The question must have more than or equal to two answers.<span>';
                 this.readingTextQuestionErrors[this.readingQuestions[i].id] = '<span class="error-message">The question must have more than or equal to two answers.<span>';
               }

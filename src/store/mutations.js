@@ -34,86 +34,99 @@ export default {
 
         if (status === 'MULTIPLE_CHOICE') {
             for (var i = 3; i >= 0; i--) {
-                state.answers.push({
-                    text:'',
-                    correct:'',
-                    questionId: state.questionId
-                })
-            }
-        }
+               var maxUid = parseInt(Math.max.apply(Math, state.answers.map(function (o) {
+                return o.uid;
+            }))) || 0;
 
-        if (status === 'READING_TEXT') {
-            state.readingQuestions.push({
-                "answers": [],
-                "id": 1,
-                "questionTest": "",
-                "questionWeight": 1
+
+
+               state.answers.push({
+                text:'',
+                correct:'',
+                questionId: state.questionId,
+                uid: maxUid + 1
             })
-            for (var i = 3; i >= 0; i--) {
-                state.answers.push({
-                    text:'',
-                    correct:'',
-                    questionId: 1
-                })
-            }
+           }
+       }
+
+       if (status === 'READING_TEXT') {
+        state.readingQuestions.push({
+            answers: [],
+            id: 1,
+            questionTest: "",
+            questionWeight: 1
+        })
+        for (var i = 3; i >= 0; i--) {
+            var maxUid = parseInt(Math.max.apply(Math, state.answers.map(function (o) {
+                return o.uid;
+            }))) || 0;
+
+            state.answers.push({
+                text:'',
+                correct:'',
+                questionId: 1,
+                uid: maxUid + 1
+
+            })
         }
-    },
-    [DELETE_QUESTION](state, {id}) {
-        state.questions = state.questions.filter(i => i.id !== id);
-    },
-    [ADD_QUESTION](state, question) {
-        question.id = state.questionId;
-        question.type = state.questionType;
+    }
+},
+[DELETE_QUESTION](state, {id}) {
+    state.questions = state.questions.filter(i => i.id !== id);
+},
+[ADD_QUESTION](state, question) {
+    question.id = state.questionId;
+    question.type = state.questionType;
 
-        if (question.type === 'READING_TEXT') {
-            for (var i = state.readingQuestions.length - 1; i >= 0; i--) {
-                state.readingQuestions[i].answers = state.answers.filter(answer => answer.questionId === state.readingQuestions[i].id);
-            }
-            question.subQuestions = state.readingQuestions;
-            question.readingText = state.readingText;
-
-            state.readingQuestions = [];
-            state.readingText = '';
+    if (question.type === 'READING_TEXT') {
+        for (var i = state.readingQuestions.length - 1; i >= 0; i--) {
+            state.readingQuestions[i].answers = state.answers.filter(answer => answer.questionId === state.readingQuestions[i].id);
         }
-        else {
-            question.answers = state.answers.filter(answer => answer.questionId === question.id);
-        }
+        question.subQuestions = state.readingQuestions;
+        question.readingText = state.readingText;
 
-        state.answers = [];
-
-        state.questions.push(question);
-
-        var maxId = parseInt(Math.max.apply(Math, state.questions.map(function (o) {
-            return o.id;
-        }))) || 0;
-
-        state.questionId = maxId + 1;
-    },
-    [DELETE_ANSWER](state, {uid}) {
-        state.answers = state.answers.filter(i => i.uid !== uid);
-    },
-    [ADD_ANSWER](state, answer) {
-        var maxId = parseInt(Math.max.apply(Math, state.answers.filter(item => item.questionId === answer.questionId).map(function (o) {
-            return o.id;
-        }))) || 0;
-        var maxUid = parseInt(Math.max.apply(Math, state.answers.map(function (o) {
-            return o.uid;
-        }))) || 0;
-
-        answer.uid = maxUid + 1;
-
-        state.answers.push(answer);
-    },
-    [SET_READING_TEXT](state, text) {
-        state.readingText = text;
-    },
-    [DELETE_READING_QUESTION](state, {id}) {
-        state.readingQuestions = state.readingQuestions.filter(i => i.id !== id);
-        state.questionId--;
-    },
-    [ADD_READING_QUESTION](state, question) {
-        question.id = state.questionId;
+        state.readingQuestions = [];
+        state.readingText = '';
+    }
+    else {
         question.answers = state.answers.filter(answer => answer.questionId === question.id);
+    }
+
+    state.answers = [];
+
+    state.questions.push(question);
+
+    var maxId = parseInt(Math.max.apply(Math, state.questions.map(function (o) {
+        return o.id;
+    }))) || 0;
+
+    state.questionId = maxId + 1;
+},
+[DELETE_ANSWER](state, {uid}) {
+    state.answers = state.answers.filter(i => i.uid !== uid);
+},
+[ADD_ANSWER](state, answer) {
+    var maxId = parseInt(Math.max.apply(Math, state.answers.filter(item => item.questionId === answer.questionId).map(function (o) {
+        return o.id;
+    }))) || 0;
+    var maxUid = parseInt(Math.max.apply(Math, state.answers.map(function (o) {
+        return o.uid;
+    }))) || 0;
+
+    answer.uid = maxUid + 1;
+
+    state.answers.push(answer);
+},
+[SET_READING_TEXT](state, text) {
+    state.readingText = text;
+},
+[DELETE_READING_QUESTION](state, {id}) {
+    state.readingQuestions = state.readingQuestions.filter(i => i.id !== id);
+    state.questionId--;
+},
+[ADD_READING_QUESTION](state, question) {
+    question.id = state.questionId;
+    question.answers = state.answers.filter(answer => answer.questionId === question.id);
         //state.answers = [];
 
         state.readingQuestions.push(question);
