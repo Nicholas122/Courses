@@ -67,7 +67,7 @@
     data() {
       return {
         question: {
-          "weight": 3
+          "weight": 1
         },
         answerError: ''
       };
@@ -112,7 +112,7 @@
           if (this.answerError === '' && this.readingTextQuestionErrors.length === 0) {
             this.question.id = this.questionId;
 
-            this.addQuestion(this.question).then(() => { this.question ={"weight": 3};})
+            this.addQuestion(this.question).then(() => { this.question ={"weight": 1};})
           }
         }
       });
