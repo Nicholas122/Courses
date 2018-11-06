@@ -51,7 +51,9 @@
 
         </div>
 
-        <input :disabled="errors.any()" type="submit" class="btn btn-success marg"  value="Save question"> 
+        <div class="form-group" style="margin-top: 25px">
+          <input :disabled="errors.any()" type="submit" class="btn btn-success marg"  value="Save question"> 
+        </div>
       </form>
     </div>      
   </div>

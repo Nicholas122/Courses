@@ -125,15 +125,31 @@ export default {
     state.questionId--;
 },
 [ADD_READING_QUESTION](state, question) {
-    question.id = state.questionId;
-    question.answers = state.answers.filter(answer => answer.questionId === question.id);
+    //var maxId = parseInt(Math.max.apply(Math,state.questions.map(function(o){return o.id;}))) || 0;
+
+    question.id = state.questionId + 1;
+    for (var i = 3; i >= 0; i--) {
+        var maxUid = parseInt(Math.max.apply(Math, state.answers.map(function (o) {
+            return o.uid;
+        }))) || 0;
+
+        state.answers.push({
+            text:'',
+            correct:'',
+            questionId: question.id,
+            uid: maxUid + 1
+
+        })
+    }
+    //question.answers = state.answers.filter(answer => answer.questionId === question.id);
         //state.answers = [];
 
         state.readingQuestions.push(question);
 
-        //var maxId = parseInt(Math.max.apply(Math,state.questions.map(function(o){return o.id;}))) || 0;
 
         state.questionId++;
+
+
     },
     [SET_SECTIONS](state, sections) {
         state.sections = sections;

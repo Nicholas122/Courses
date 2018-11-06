@@ -6,9 +6,6 @@
           <div class="col-lg-7">
             <h4>Reading text </h4>
           </div>
-          <div class="col-lg-5">
-            <button  class="btn btn-success " v-on:click.prevent="createReadingQuestion">Add Reading Question </button>
-          </div>
         </div>
       </div>
       <div class="row">
@@ -40,7 +37,13 @@
           </div>
         </div>
       </div>
-
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-7">
+              <button  class="btn btn-success " v-on:click.prevent="createReadingQuestion">Add Reading Question </button>
+            </div>
+          </div>
+        </div>
 
     </form>
   </div>
